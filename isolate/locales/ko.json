@@ -232,6 +232,8 @@
     "youLose": "상대가 승리",
     "board": "듀얼 리더보드",
     "duelist": "결투자",
+    "playerJoined": "{name} 님이 대결에 참여했습니다",
+    "started": "대결 시작 — 긴장하세요!",
     "novas": "노바"
   },
   "shop": {

@@ -91,7 +91,7 @@ export default function MpProfile() {
     const { error } = await mpDb().rpc("rename", { p_username: name.trim() });
     if (error) toast(gameError(error, t), "err");
     else {
-      toast(t("profile.saved"));
+      toast(t("profile.saved"), "success");
       refresh();
     }
   };

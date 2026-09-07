@@ -68,7 +68,7 @@ export default function SpShop() {
       return;
     }
     sfx.buy();
-    toast(t("shop.success"));
+    toast(t("shop.success"), "success");
     if (user) load(user.id);
     refresh();
   };
@@ -166,7 +166,7 @@ export default function SpShop() {
                               disabled={!affordable}
                               onClick={() => {
                                 if (cosmetic && owned) {
-                                  toast(t("shop.alreadyOwned"), "err");
+                                  toast(t("shop.alreadyOwned"), "warning");
                                   return;
                                 }
                                 setConfirm(item);

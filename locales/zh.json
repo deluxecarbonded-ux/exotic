@@ -232,6 +232,8 @@
     "youLose": "对手赢得了对决",
     "board": "对决排行榜",
     "duelist": "对决者",
+    "playerJoined": "{name} 加入了对决",
+    "started": "对决开始 — 稳住！",
     "novas": "诺瓦"
   },
   "shop": {

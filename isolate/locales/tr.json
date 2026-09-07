@@ -232,6 +232,8 @@
     "youLose": "Rakip düelloyu kazandı",
     "board": "Düello liderlik tablosu",
     "duelist": "Düellocu",
+    "playerJoined": "{name} düelloya katıldı",
+    "started": "Düello başladı — sıkı tutunun!",
     "novas": "Novas"
   },
   "shop": {

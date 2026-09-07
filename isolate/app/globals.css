@@ -25,7 +25,6 @@
   --animate-flip: flip 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-fall: fall linear both;
   --animate-pulse-soft: pulse-soft 2.2s ease-in-out infinite;
-  --animate-slideup: slideup 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-glowpulse: glowpulse 3.2s ease-in-out infinite;
   --animate-marquee: marquee 22s linear infinite;
 
@@ -63,10 +62,6 @@
   @keyframes pulse-soft {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.45; }
-  }
-  @keyframes slideup {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(0); }
   }
   @keyframes glowpulse {
     0%, 100% { opacity: 0.25; transform: scale(1); }

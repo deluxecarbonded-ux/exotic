@@ -232,6 +232,8 @@
     "youLose": "Motståndaren vann duellen",
     "board": "Duelltopplista",
     "duelist": "Duellant",
+    "playerJoined": "{name} gick med i duellen",
+    "started": "Duellen börjar — håll i dig!",
     "novas": "Novas"
   },
   "shop": {

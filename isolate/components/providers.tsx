@@ -13,7 +13,8 @@ import React, {
 } from "react";
 import { LOCALES, LOCALE_META } from "@/locales";
 import { safeGet, safeSet } from "@/lib/safe-store";
-import { warmSfx } from "@/lib/sound";
+import { sfx, warmSfx } from "@/lib/sound";
+import { ToastStack, normalizeKind, type ToastKindInput, type ToastData } from "./toast";
 
 /* ────────────────────────── Theme ────────────────────────── */
 
@@ -80,9 +81,9 @@ function resolve(obj: any, path: string): string | undefined {
 
 /* ─────────────────────────── Toast ───────────────────────── */
 
-type Toast = { id: number; msg: string; kind: "ok" | "err" };
+type Toast = ToastData;
 const ToastCtx = createContext<{
-  toast: (msg: string, kind?: "ok" | "err") => void;
+  toast: (msg: string, kind?: ToastKindInput) => void;
 }>({ toast: () => {} });
 export const useToast = () => useContext(ToastCtx);
 
@@ -221,12 +222,18 @@ export function Providers({ children }: { children: React.ReactNode }) {
     } catch {}
   }, []);
 
-  const toast = useCallback((msg: string, kind: "ok" | "err" = "ok") => {
+  const toast = useCallback((msg: string, kind: ToastKindInput = "success") => {
     const id = ++idRef.current;
-    setToasts((ts) => [...ts.slice(-3), { id, msg, kind }]);
+    const k = normalizeKind(kind);
+    setToasts((ts) => [...ts.slice(-4), { id, msg, kind: k }]);
+    /* audibly flag the kinds callers don't already score themselves —
+       errors and warnings travel silently everywhere today */
+    if (k === "error") sfx.error();
+    else if (k === "warning") sfx.tick();
+    else if (k === "achievement") sfx.powerup();
     setTimeout(() => {
       setToasts((ts) => ts.filter((x) => x.id !== id));
-    }, 2800);
+    }, 3200);
   }, []);
 
   const num = useCallback(
@@ -253,16 +260,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           )}
-          <div className="pointer-events-none fixed bottom-[calc(7rem+env(safe-area-inset-bottom))] md:bottom-8 left-1/2 z-[90] -translate-x-1/2 flex flex-col items-center gap-2">
-            {toasts.map((t) => (
-              <div
-                key={t.id}
-                className="animate-slideup rounded-full bg-fg px-5 py-2.5 text-sm font-bold text-bg shadow-pop"
-              >
-                {t.msg}
-              </div>
-            ))}
-          </div>
+          <ToastStack
+            toasts={toasts}
+            onDismiss={(id) => setToasts((ts) => ts.filter((x) => x.id !== id))}
+          />
         </ToastCtx.Provider>
       </I18nContext.Provider>
     </ThemeCtx.Provider>

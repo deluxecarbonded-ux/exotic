@@ -232,6 +232,8 @@
     "youLose": "相手が勝利",
     "board": "デュエルランキング",
     "duelist": "デュエリスト",
+    "playerJoined": "{name} が対決に参加しました",
+    "started": "対決開始 — 油断しないで！",
     "novas": "ノヴァ"
   },
   "shop": {

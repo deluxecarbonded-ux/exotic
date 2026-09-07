@@ -122,7 +122,7 @@ export function LevelCompletionModal({
       });
       if (error) throw error;
       setPosted(true);
-      toast(t("levelCompletion.posted"), "ok");
+      toast(t("levelCompletion.posted"), "success");
       sfx.powerup2();
       loadBoard();
     } catch {
@@ -139,7 +139,7 @@ export function LevelCompletionModal({
     if (navigator.share && locale !== "ar" && locale !== "hi") {
       try {
         await navigator.share({ title: t("app.name"), text });
-        toast(t("levelCompletion.shared"), "ok");
+        toast(t("levelCompletion.shared"), "success");
       } catch {
         fallbackCopy(text);
       }
@@ -150,7 +150,7 @@ export function LevelCompletionModal({
 
   const fallbackCopy = (text: string) => {
     navigator.clipboard?.writeText(text).catch(() => {});
-    toast(t("common.copied"), "ok");
+    toast(t("common.copied"), "info");
   };
 
   const rankLabel = (row: BoardRow, idx: number) => {

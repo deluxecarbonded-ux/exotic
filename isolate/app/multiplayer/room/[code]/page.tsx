@@ -217,6 +217,7 @@ function RoomInner() {
           setRoom(r);
           if (r.status === "active" && prevStatus !== "active") {
             sfx.phaserup();
+            toast(t("mp.started"), "info");
           }
           if (r.status === "finished" && prevStatus !== "finished") {
             if (r.winner_id === user.id) {
@@ -233,7 +234,28 @@ function RoomInner() {
       .on(
         "postgres_changes",
         { event: "*", schema: "mp", table: "room_players" as any, filter: `room_id=eq.${rid}` },
-        () => loadAll(rid, (room.match_no as number) || 1)
+        (payload: any) => {
+          loadAll(rid, (room.match_no as number) || 1);
+          /* the moment an opponent steps in — welcome them (silent for us) */
+          if (
+            payload.eventType === "INSERT" &&
+            (payload.new as any)?.player_id &&
+            (payload.new as any).player_id !== user.id
+          ) {
+            sfx.join();
+            mpDb()
+              .from("profiles" as any)
+              .select("username")
+              .eq("id", (payload.new as any).player_id)
+              .maybeSingle()
+              .then(({ data }: any) => {
+                toast(
+                  t("mp.playerJoined", { name: data?.username || t("mp.duelist") }),
+                  "info"
+                );
+              });
+          }
+        }
       )
       .on(
         "postgres_changes",
@@ -415,7 +437,7 @@ function RoomInner() {
   const copyCode = () => {
     navigator.clipboard?.writeText(code).catch(() => {});
     sfx.confirm2();
-    toast(t("common.copied"));
+    toast(t("common.copied"), "info");
   };
 
   if (authLoading)

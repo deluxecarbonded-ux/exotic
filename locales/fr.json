@@ -232,6 +232,8 @@
     "youLose": "L'adversaire a gagné le duel",
     "board": "Classement des duels",
     "duelist": "Duelliste",
+    "playerJoined": "{name} a rejoint le duel",
+    "started": "Le duel commence — accrochez-vous !",
     "novas": "Novas"
   },
   "shop": {

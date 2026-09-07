@@ -99,14 +99,14 @@ export default function SpHub() {
       toast(gameError(error, t), "err");
     } else {
       sfx.coins();
-      toast(`+${num((data as any)?.amount ?? 25)} ✦ ${t("sp.sparks")}`);
+      toast(`+${num((data as any)?.amount ?? 25)} ✦ ${t("sp.sparks")}`, "achievement");
       setDailyState("claimed");
     }
   };
 
   const play = () => {
     if (useDouble && doubleOwned <= 0) {
-      toast(t("sp.noBoost"), "err");
+      toast(t("sp.noBoost"), "warning");
       return;
     }
     sfx.vault();
@@ -229,7 +229,7 @@ export default function SpHub() {
                 onClick={() => {
                   sfx.toggle();
                   if (doubleOwned > 0) setUseDouble((v) => !v);
-                  else toast(t("sp.noBoost"), "err");
+                  else toast(t("sp.noBoost"), "warning");
                 }}
                 className={cn(
                   "press mb-5 flex w-full items-center gap-3 rounded-2xl px-4 py-3.5 text-start text-sm font-bold",

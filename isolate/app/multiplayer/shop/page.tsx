@@ -68,7 +68,7 @@ export default function MpShop() {
       return;
     }
     sfx.buy();
-    toast(t("shop.success"));
+    toast(t("shop.success"), "success");
     if (user) load(user.id);
     refresh();
   };
@@ -171,7 +171,7 @@ export default function MpShop() {
                               disabled={!affordable}
                               onClick={() => {
                                 if (owned) {
-                                  toast(t("shop.alreadyOwned"), "err");
+                                  toast(t("shop.alreadyOwned"), "warning");
                                   return;
                                 }
                                 setConfirm(item);

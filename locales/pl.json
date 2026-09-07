@@ -232,6 +232,8 @@
     "youLose": "Przeciwnik wygrał pojedynek",
     "board": "Ranking pojedynków",
     "duelist": "Duelant",
+    "playerJoined": "{name} dołączył do pojedynku",
+    "started": "Pojedynek rozpoczęty — trzymaj się!",
     "novas": "Novy"
   },
   "shop": {

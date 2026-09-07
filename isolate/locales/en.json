@@ -232,6 +232,8 @@
     "youLose": "Opponent won the duel",
     "board": "Duel leaderboard",
     "duelist": "Duelist",
+    "playerJoined": "{name} joined the duel",
+    "started": "Duel started — hold on tight!",
     "novas": "Novas"
   },
   "shop": {

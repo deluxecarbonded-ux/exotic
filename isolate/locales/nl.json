@@ -232,6 +232,8 @@
     "youLose": "De tegenstander won het duel",
     "board": "Duelranglijst",
     "duelist": "Duelist",
+    "playerJoined": "{name} is bij het duel gekomen",
+    "started": "Duel gestart — houd je vast!",
     "novas": "Novas"
   },
   "shop": {

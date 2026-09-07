@@ -251,7 +251,7 @@ function PlayInner() {
             endAtRef.current = Date.now() + (r.bonus || 45) * 1000;
             setTimeLeft(r.bonus || 45);
             loadItems(user!.id);
-            toast(t("game.spareKeyUsed"));
+            toast(t("game.spareKeyUsed"), "info");
             sfx.correct();
             return;
           }
@@ -314,12 +314,12 @@ function PlayInner() {
       sfx.correct();
     } else if (itemId === "reveal" && r?.clue) {
       setHints((h) => [...h, r.clue]);
-      toast(localeDigits(clueText(r.clue, t), locale));
+      toast(localeDigits(clueText(r.clue, t), locale), "info");
       sfx.correct();
     } else if (itemId === "reveal2" && r?.clue) {
       const two: Clue[] = [r.clue, r.clue2].filter(Boolean);
       setHints((h) => [...h, ...two]);
-      toast(localeDigits(two.map((c) => clueText(c, t)).join("  ·  "), locale));
+      toast(localeDigits(two.map((c) => clueText(c, t)).join("  ·  "), locale), "info");
       sfx.correct();
     } else if (itemId === "skip") {
       sfx.pop();
