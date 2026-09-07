@@ -117,6 +117,7 @@ function PlayInner() {
           (data as any)?.answer_len ||
             (question.kind === "number" ? question.answer.length : 16)
         );
+        sfx.question();
         setQ({ ...question, answer: "" }); /* scrub the answer */
         setHints([]);
       }
@@ -279,6 +280,7 @@ function PlayInner() {
     }
     const r = data as any;
     if (!r?.win) return false;
+    if (r.level_up) setTimeout(() => sfx.levelup(), 900); /* stacks after the win sting */
     setResult(r);
     return true;
   };
@@ -339,6 +341,7 @@ function PlayInner() {
   const abandon = async () => {
     if (!game) return;
     overRef.current = true;
+    sfx.leave();
     await spDb().rpc("abandon_game", { p_game: game.id });
     router.replace("/singleplayer");
     toast(t("game.abandoned"), "info");

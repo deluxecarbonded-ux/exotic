@@ -175,6 +175,7 @@ export default function MpShop() {
                                   toast(t("shop.alreadyOwned"), "warning");
                                   return;
                                 }
+                                sfx.open();
                                 setConfirm(item);
                               }}
                             >

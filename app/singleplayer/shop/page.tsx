@@ -170,6 +170,7 @@ export default function SpShop() {
                                   toast(t("shop.alreadyOwned"), "warning");
                                   return;
                                 }
+                                sfx.open();
                                 setConfirm(item);
                               }}
                             >
