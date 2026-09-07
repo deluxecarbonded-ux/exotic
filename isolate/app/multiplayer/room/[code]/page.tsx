@@ -368,6 +368,7 @@ function RoomInner() {
   const toggleReady = async () => {
     sfx.click();
     await mpDb().rpc("set_ready", { p_room: room!.id, p_ready: !me?.ready });
+    if (!me?.ready) toast(t("common.ready"), "success");
   };
 
   const startDuel = async () => {
@@ -382,7 +383,10 @@ function RoomInner() {
       p_round: qState.roundId,
       p_answer: value,
     });
-    if (error) return false;
+    if (error) {
+      toast(gameError(error, t), "err");
+      return false;
+    }
     const r = data as any;
     if (r.correct) {
       setBanner(t("game.correct"));
@@ -409,11 +413,15 @@ function RoomInner() {
 
   const sendChat = async (kind: "text" | "emote", body: string) => {
     if (!room || !body.trim()) return;
-    await mpDb().rpc("send_chat", {
+    const { error } = await mpDb().rpc("send_chat", {
       p_room: room.id,
       p_kind: kind,
       p_body: body.trim().slice(0, 200),
     });
+    if (error) {
+      toast(gameError(error, t), "err");
+      return;
+    }
     if (kind === "emote") sfx.emote();
     else sfx.chat();
     setMsg("");
@@ -423,6 +431,7 @@ function RoomInner() {
     sfx.leave();
     if (room) await mpDb().rpc("leave_room", { p_room: room.id });
     router.replace("/multiplayer");
+    toast(t("mp.left"), "info");
   };
 
   const rematch = async () => {
@@ -431,6 +440,7 @@ function RoomInner() {
     else {
       setConfetti(false);
       sfx.phaserup();
+      toast(t("mp.rematch"), "success");
     }
   };
 

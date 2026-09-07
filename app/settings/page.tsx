@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useI18n, useTheme } from "@/components/providers";
+import { useI18n, useTheme, useToast } from "@/components/providers";
 import { Navbar } from "@/components/navbar";
 import { Card, SectionTitle } from "@/components/ui";
 import { Moon, Sun, Volume2, VolumeX, Languages, Info, Check, Bot, Swords, Lock } from "lucide-react";
@@ -11,6 +11,7 @@ import { sfx, soundEnabled, setSoundEnabled } from "@/lib/sound";
 export default function SettingsPage() {
   const { t, locale, setLocale, locales, aiQuestions, setAiQuestions } = useI18n();
   const { theme, setTheme } = useTheme();
+  const { toast } = useToast();
   const [sound, setSound] = useState(soundEnabled());
 
   return (
@@ -29,6 +30,7 @@ export default function SettingsPage() {
                 onClick={() => {
                   sfx.select();
                   setTheme("light");
+                  toast(t("settings.light"), "info");
                 }}
                 className={cn(
                   "press flex items-center justify-center gap-2 rounded-2xl px-6 py-5 font-bold",
@@ -41,6 +43,7 @@ export default function SettingsPage() {
                 onClick={() => {
                   sfx.select();
                   setTheme("dark");
+                  toast(t("settings.dark"), "info");
                 }}
                 className={cn(
                   "press flex items-center justify-center gap-2 rounded-2xl px-6 py-5 font-bold",
@@ -60,6 +63,7 @@ export default function SettingsPage() {
                 setSound(next);
                 setSoundEnabled(next);
                 if (next) sfx.toggle();
+                toast(`${t("settings.sound")} · ${next ? t("common.on") : t("common.off")}`, "info");
               }}
               className={cn(
                 "press flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-5 font-bold",
@@ -81,6 +85,7 @@ export default function SettingsPage() {
               onClick={() => {
                 sfx.toggle();
                 setAiQuestions(!aiQuestions);
+                toast(`${t("settings.ai")} · ${!aiQuestions ? t("common.on") : t("common.off")}`, "info");
               }}
               className={cn(
                 "press flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-5 font-bold",
@@ -121,6 +126,7 @@ export default function SettingsPage() {
                   onClick={() => {
                     sfx.select();
                     setLocale(l.code);
+                    toast(l.name, "success");
                   }}
                   className={cn(
                     "press flex items-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-bold",

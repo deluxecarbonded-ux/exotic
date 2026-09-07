@@ -99,7 +99,12 @@ export default function SpProfile() {
   const setAvatar = async (icon: string) => {
     sfx.latch();
     const { error } = await spDb().rpc("set_avatar", { p_icon: icon });
-    if (!error) refresh();
+    if (error) {
+      toast(gameError(error, t), "err");
+      return;
+    }
+    toast(t("profile.saved"), "success");
+    refresh();
   };
 
   if (authLoading || (!profile && authLoading === false && user)) {

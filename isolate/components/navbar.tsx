@@ -116,6 +116,7 @@ export function Navbar({
                      guard would otherwise race us to /auth/sp */
                   router.push("/");
                   await sp().auth.signOut();
+                  toast(t("common.signedOut"), "info");
                 }}
               >
                 <LogOut size={14} className="rtl:-scale-x-100" /> {t("common.signOut")}
@@ -128,6 +129,7 @@ export function Navbar({
                   /* same race guard as the sp sign-out */
                   router.push("/");
                   await mp().auth.signOut();
+                  toast(t("common.signedOut"), "info");
                 }}
               >
                 <LogOut size={14} className="rtl:-scale-x-100" /> {t("common.signOut")}
@@ -138,7 +140,9 @@ export function Navbar({
               aria-label={t("a11y.theme")}
               onClick={() => {
                 sfx.pop();
-                setTheme(theme === "dark" ? "light" : "dark");
+                const next = theme === "dark" ? "light" : "dark";
+                setTheme(next);
+                toast(next === "light" ? t("settings.light") : t("settings.dark"), "info");
               }}
               className="press grid h-10 w-10 place-items-center rounded-full bg-soft text-fg"
             >

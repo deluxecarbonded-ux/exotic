@@ -99,12 +99,22 @@ export default function MpProfile() {
   const setAvatar = async (icon: string) => {
     sfx.latch();
     const { error } = await mpDb().rpc("set_avatar", { p_icon: icon });
-    if (!error) refresh();
+    if (error) {
+      toast(gameError(error, t), "err");
+      return;
+    }
+    toast(t("profile.saved"), "success");
+    refresh();
   };
 
   const setFrame = async (frameId: string) => {
     sfx.latch();
-    await mpDb().rpc("set_frame", { p_frame: frameId });
+    const { error } = await mpDb().rpc("set_frame", { p_frame: frameId });
+    if (error) {
+      toast(gameError(error, t), "err");
+      return;
+    }
+    toast(t("profile.saved"), "success");
     refresh();
     if (user) load(user.id);
   };

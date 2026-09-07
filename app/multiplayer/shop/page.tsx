@@ -84,6 +84,7 @@ export default function MpShop() {
       return;
     }
     sfx.latch();
+    if (!cur) toast(t("common.equipped"), "success");
     if (user) load(user.id);
     refresh();
   };

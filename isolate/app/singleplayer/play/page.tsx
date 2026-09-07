@@ -341,6 +341,7 @@ function PlayInner() {
     overRef.current = true;
     await spDb().rpc("abandon_game", { p_game: game.id });
     router.replace("/singleplayer");
+    toast(t("game.abandoned"), "info");
   };
 
   const itemDefs = [

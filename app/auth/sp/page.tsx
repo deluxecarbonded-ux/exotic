@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useI18n, LogoMark } from "@/components/providers";
+import { useI18n, useToast, LogoMark } from "@/components/providers";
 import { Button, Spinner } from "@/components/ui";
 import { sp, spDb, mp, useSpSession, withAuthRetry } from "@/lib/supabase";
 import { sfx } from "@/lib/sound";
@@ -26,6 +26,7 @@ type Mode = "in" | "up" | "forgot" | "reset" | "register";
 
 export default function SpAuth() {
   const { t } = useI18n();
+  const { toast } = useToast();
   const router = useRouter();
   const { user, loading } = useSpSession();
   const [mode, setMode] = useState<Mode>("in");
@@ -80,6 +81,7 @@ export default function SpAuth() {
       const j = r ? await r.json().catch(() => ({})) : {};
       if (j.ok) {
         sfx.powerup2();
+        toast(t("auth.verified"), "success");
         setNotice(t("auth.verified"));
         /* signed-in visitors hop straight to the vault */
         setTimeout(() => {
@@ -102,6 +104,7 @@ export default function SpAuth() {
       .maybeSingle();
     if (prof) {
       sfx.powerup2();
+      toast(t("common.welcome"), "success");
       router.replace("/singleplayer");
       return;
     }
@@ -143,6 +146,7 @@ export default function SpAuth() {
         const { error } = await sp().auth.updateUser({ password });
         if (error) throw error;
         sfx.powerup2();
+        toast(t("auth.passUpdated"), "success");
         router.replace("/singleplayer");
       } catch (e: any) {
         setErr(gameError(e, t) || t("auth.failed"));
@@ -166,6 +170,7 @@ export default function SpAuth() {
           body: JSON.stringify({ email: email.trim(), mode: "sp" }),
         }).catch(() => null);
         if (!r || !r.ok) throw new Error("mail");
+        toast(t("auth.resetSent"), "success");
         setNotice(t("auth.resetSent"));
       } catch (e: any) {
         setErr(gameError(e, t) || t("auth.failed"));
@@ -243,6 +248,7 @@ export default function SpAuth() {
         return;
       }
       sfx.powerup2();
+      toast(t("common.welcome"), "success");
       router.replace("/singleplayer");
     } catch (e: any) {
       setErr(gameError(e, t) || t("auth.failed"));
