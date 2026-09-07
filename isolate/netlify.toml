@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The Next.js runtime — WITHOUT this Netlify cannot serve an App-Router
+# SSR app (every route 404s / "page couldn't load"). It builds the
+# serverless functions for every route + serves _next static assets.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

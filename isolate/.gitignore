@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+env.netlify.txt
+.netlify/
+.vercel/
+*.log
+.DS_Store

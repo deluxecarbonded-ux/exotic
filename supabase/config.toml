@@ -1,0 +1,13 @@
+# EXOTIC · Supabase Edge Functions configuration
+# Deploy with:  supabase functions deploy ai rotate-shop cleanup-rooms
+
+project_id = "teqnhdhearzrywiqssom"
+
+[functions.ai]
+verify_jwt = false
+
+[functions.rotate-shop]
+verify_jwt = true
+
+[functions.cleanup-rooms]
+verify_jwt = true
