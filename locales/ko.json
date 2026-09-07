@@ -503,6 +503,19 @@
     "numbers": "숫자 키보드",
     "enter": "정답 제출"
   },
+  "levelCompletion": {
+    "title": "레벨 {level} 클리어!",
+    "sub": "{diff} 레벨 순위표 — 계속 올라가세요",
+    "leaderboard": "순위표",
+    "you": "나",
+    "shareBoard": "게임 순위표에 공유",
+    "shareSocial": "소셜 미디어에 공유",
+    "dontShare": "공유 안 함",
+    "posted": "순위표에 공유했습니다!",
+    "shared": "공유했습니다!",
+    "beat": "능가할 수 있나요?",
+    "cta": "순위표에 공유"
+  },
   "lb": {
     "wins": "승리",
     "sparks": "스파크",

@@ -503,6 +503,19 @@
     "numbers": "数字键盘",
     "enter": "提交答案"
   },
+  "levelCompletion": {
+    "title": "第 {level} 关通过！",
+    "sub": "你的 {diff} 关卡榜 — 继续攀登",
+    "leaderboard": "排行榜",
+    "you": "你",
+    "shareBoard": "分享到游戏排行榜",
+    "shareSocial": "分享到社交媒体",
+    "dontShare": "不分享",
+    "posted": "已分享到排行榜！",
+    "shared": "已分享！",
+    "beat": "你能超过吗？",
+    "cta": "分享到排行榜"
+  },
   "lb": {
     "wins": "胜场",
     "sparks": "火花",

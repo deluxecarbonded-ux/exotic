@@ -503,6 +503,19 @@
     "numbers": "Klawiatura cyfr",
     "enter": "Wyślij odpowiedź"
   },
+  "levelCompletion": {
+    "title": "Poziom {level} ukończony!",
+    "sub": "Twoja tablica poziomów {diff} — wspinaj się dalej",
+    "leaderboard": "Tablica wyników",
+    "you": "Ty",
+    "shareBoard": "Udostępnij w tablicach wyników gry",
+    "shareSocial": "Udostępnij w mediach społecznościowych",
+    "dontShare": "Nie udostępniaj",
+    "posted": "Udostępniono w tablicach wyników!",
+    "shared": "Udostępniono!",
+    "beat": "Dasz radę lepiej?",
+    "cta": "Udostępnij w tablicach wyników"
+  },
   "lb": {
     "wins": "Wygrane",
     "sparks": "Iskry",

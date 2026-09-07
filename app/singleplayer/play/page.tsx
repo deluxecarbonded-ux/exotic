@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { useI18n, useToast, titleCaseEveryWord, localeDigits } from "@/components/providers";
-import { useSpSession, spDb } from "@/lib/supabase";
+import { useSpSession, sp, spDb } from "@/lib/supabase";
 import { Button, Card, Modal, Spinner, Pill } from "@/components/ui";
 import { QuestionCard } from "@/components/question";
 import { Confetti } from "@/components/confetti";
@@ -33,6 +33,7 @@ import {
   Eye,
 } from "lucide-react";
 import { LockOpen } from "lucide-react";
+import { LevelCompletionModal } from "@/components/level-completion-modal";
 
 type GameMeta = {
   id: string;
@@ -65,6 +66,11 @@ function PlayInner() {
   const [abandonOpen, setAbandonOpen] = useState(false);
   const [items, setItems] = useState<Record<string, number>>({});
   const [showConfetti, setShowConfetti] = useState(false);
+  const [levelModalOpen, setLevelModalOpen] = useState(false);
+  const [levelModalDiff, setLevelModalDiff] = useState<string>("easy");
+  const [levelModalLevel, setLevelModalLevel] = useState(1);
+  const [levelModalPosted, setLevelModalPosted] = useState(false);
+  const [profile, setProfile] = useState<any | null>(null);
 
   const endAtRef = useRef<number>(0);
   const tickRef = useRef<number>(-1);
@@ -154,6 +160,36 @@ function PlayInner() {
       /* fetch the question once the game id is in state */
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
+
+  /* track the difficulty for the level-completion modal */
+  useEffect(() => {
+    setLevelModalDiff((params.get("d") as Difficulty) || "easy");
+  }, [params]);
+
+  /* profile for the level-completion modal (name + avatar) — live via realtime */
+  useEffect(() => {
+    if (!user) return;
+    const load = async () => {
+      const { data } = await spDb()
+        .from("profiles" as any)
+        .select("username, avatar")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (data) setProfile(data);
+    };
+    load();
+    const ch = sp()
+      .channel(`sp-play-profile-${user.id}`)
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "sp", table: "profiles" as any, filter: `id=eq.${user.id}` },
+        load
+      )
+      .subscribe();
+    return () => {
+      sp().removeChannel(ch);
+    };
   }, [user?.id]);
 
   useEffect(() => {
@@ -497,6 +533,19 @@ function PlayInner() {
           )}
 
           <div className="mt-7 flex flex-col gap-2.5">
+            {outcome === "won" && (
+              <Button
+                variant="soft"
+                className="w-full"
+                onClick={() => {
+                  setLevelModalLevel(Number(params.get("lvl")) || 1);
+                  setLevelModalOpen(true);
+                }}
+              >
+                <Trophy size={16} /> {t("levelCompletion.cta")}
+              </Button>
+            )}
+
             {outcome === "won" && result?.next_level ? (
               <Button
                 size="xl"
@@ -510,6 +559,7 @@ function PlayInner() {
                 {num(result.next_level)}
               </Button>
             ) : null}
+
             <div className="flex gap-2.5">
               <Link href="/singleplayer" className="flex-1">
                 <Button variant="soft" className="w-full">
@@ -532,6 +582,21 @@ function PlayInner() {
           </div>
         </div>
       </Modal>
+
+      {/* level-completion share modal (SP) — layered above the win modal */}
+      <LevelCompletionModal
+        open={levelModalOpen && outcome === "won"}
+        onClose={() => {
+          setLevelModalOpen(false);
+          setLevelModalPosted(true);
+        }}
+        mode="sp"
+        difficulty={levelModalDiff}
+        level={levelModalLevel}
+        playerId={user?.id || ""}
+        playerName={profile?.username || "Player"}
+        playerAvatar={profile?.avatar || "sparkles"}
+      />
     </div>
   );
 }

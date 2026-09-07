@@ -503,6 +503,19 @@
     "numbers": "Clavier chiffres",
     "enter": "Valider la réponse"
   },
+  "levelCompletion": {
+    "title": "Niveau {level} terminé !",
+    "sub": "Ton classement {diff} — continue de grimper",
+    "leaderboard": "Classement",
+    "you": "Toi",
+    "shareBoard": "Partager aux classements du jeu",
+    "shareSocial": "Partager sur les réseaux sociaux",
+    "dontShare": "Ne pas partager",
+    "posted": "Partagé aux classements !",
+    "shared": "Partagé !",
+    "beat": "Tu peux faire mieux ?",
+    "cta": "Partager aux classements"
+  },
   "lb": {
     "wins": "Victoires",
     "sparks": "Étincelles",

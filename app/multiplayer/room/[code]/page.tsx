@@ -36,6 +36,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { EmoteIcon } from "@/components/emote-icon";
+import { LevelCompletionModal } from "@/components/level-completion-modal";
 
 type Room = {
   id: string;
@@ -74,6 +75,8 @@ function RoomInner() {
   const [notFound, setNotFound] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const [banner, setBanner] = useState<string | null>(null);
+  const [levelModalOpen, setLevelModalOpen] = useState(false);
+  const [levelModalPosted, setLevelModalPosted] = useState(false);
 
   const roomIdRef = useRef<string>("");
   const creatingRef = useRef(false);
@@ -262,6 +265,26 @@ function RoomInner() {
   useEffect(() => {
     mpRoomRef.current = room;
   }, [room]);
+
+  /* match just finished → offer the level-completion share modal
+     (the winner's mp.profiles.levels[difficulty] was bumped server-side) */
+  const prevFinishedRef = useRef(false);
+  useEffect(() => {
+    if (!finished && room?.status !== "finished") {
+      prevFinishedRef.current = false;
+      return;
+    }
+    if (!prevFinishedRef.current && room?.status === "finished") {
+      prevFinishedRef.current = true;
+      if (room.winner_id) {
+        /* only the two duelists get the modal — draw has no level to share */
+        const isPlayer = players.some((p) => p.player_id === user?.id);
+        if (isPlayer) {
+          setLevelModalOpen(true);
+        }
+      }
+    }
+  }, [room?.status, room?.winner_id, players, user?.id]);
 
   /* ── host: generate the next round via Ollama and commit it server-side ── */
   useEffect(() => {
@@ -604,6 +627,15 @@ function RoomInner() {
               </div>
             )}
             <div className="mt-7 flex justify-center gap-3">
+              {!draw && iWon && !levelModalPosted && (
+                <Button
+                  variant="soft"
+                  size="lg"
+                  onClick={() => setLevelModalOpen(true)}
+                >
+                  <Trophy size={16} /> {t("levelCompletion.cta")}
+                </Button>
+              )}
               <Link href="/multiplayer">
                 <Button variant="soft" size="lg">
                   {t("game.hub")}
@@ -716,6 +748,24 @@ function RoomInner() {
             {banner}
           </div>
         </div>
+      )}
+
+      {/* level-completion share modal (MP) */}
+      {room && (
+        <LevelCompletionModal
+          open={levelModalOpen && finished}
+          onClose={() => {
+            setLevelModalOpen(false);
+            setLevelModalPosted(true);
+          }}
+          mode="mp"
+          difficulty={room.difficulty}
+          level={Math.min(30, (profile?.levels?.[room.difficulty] as number) || 1)}
+          playerId={user?.id || ""}
+          playerName={profile?.username || "Player"}
+          playerAvatar={profile?.avatar || "sparkles"}
+          playerFrame={profile?.frame}
+        />
       )}
     </div>
   );

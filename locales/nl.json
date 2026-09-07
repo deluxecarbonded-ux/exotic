@@ -503,6 +503,19 @@
     "numbers": "Cijfertoetsenbord",
     "enter": "Antwoord versturen"
   },
+  "levelCompletion": {
+    "title": "Niveau {level} gehaald!",
+    "sub": "Jouw {diff} niveau-bord — blijf klimmen",
+    "leaderboard": "Scorebord",
+    "you": "Jij",
+    "shareBoard": "Deel op de spel-scoreborden",
+    "shareSocial": "Deel op social media",
+    "dontShare": "Niet delen",
+    "posted": "Gedeeld op de scoreborden!",
+    "shared": "Gedeeld!",
+    "beat": "Kun jij dit verslaan?",
+    "cta": "Deel op de scoreborden"
+  },
   "lb": {
     "wins": "Overwinningen",
     "sparks": "Vonken",
