@@ -20,7 +20,7 @@ import {
   CheckCircle2,
   Crown, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MAX_LEVEL, levelTime } from "@/lib/game";
+import { MAX_LEVEL } from "@/lib/game";
 import { fmtTime } from "@/lib/utils";
 import { DIFFICULTIES, type Difficulty } from "@/lib/game";
 import { sfx } from "@/lib/sound";
@@ -193,6 +193,8 @@ export default function SpHub() {
                 {Array.from({ length: MAX_LEVEL }, (_, i) => i + 1).map((n) => {
                   const unlocked = n <= (lvlPerDiff[diff] ?? 1);
                   const isCurrent = n === level && unlocked;
+                  /* beaten levels stay emerald — even when selected */
+                  const completed = n < (lvlPerDiff[diff] ?? 1);
                   return (
                     <button
                       key={n}
@@ -203,11 +205,13 @@ export default function SpHub() {
                       }}
                       className={cn(
                         "press grid aspect-square place-items-center rounded-xl text-xs font-black tabular",
-                        isCurrent
-                          ? "bg-btn text-btnfg"
-                          : unlocked
-                            ? "bg-soft2 text-fg"
-                            : "bg-soft2 text-mute opacity-40"
+                        completed
+                          ? "bg-emerald-500 text-white"
+                          : isCurrent
+                            ? "bg-btn text-btnfg"
+                            : unlocked
+                              ? "bg-soft2 text-fg"
+                              : "bg-soft2 text-mute opacity-40"
                       )}
                       aria-label={unlocked ? t("sp.levelN", { n }) : t("sp.levelLocked")}
                     >
@@ -219,9 +223,6 @@ export default function SpHub() {
               <div className="mb-5 flex flex-wrap gap-2 text-[11px] font-bold text-mute">
                 <span className="rounded-full bg-soft2 px-3 py-1">
                   {t("sp.levelN", { n: level })}
-                </span>
-                <span className="rounded-full bg-soft2 px-3 py-1">
-                  ⏱ {num(levelTime(diff, level))}s
                 </span>
               </div>
 

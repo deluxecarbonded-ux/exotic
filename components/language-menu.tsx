@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useI18n } from "./providers";
+import { useI18n, useToast } from "./providers";
 import { Languages, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { sfx } from "@/lib/sound";
@@ -12,6 +12,7 @@ import { sfx } from "@/lib/sound";
 
 export function LanguageMenu() {
   const { t, num, locale, setLocale, locales } = useI18n();
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [sel, setSel] = useState(-1);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,7 @@ export function LanguageMenu() {
     setLocale(code);
     setOpen(false);
     trigRef.current?.focus();
+    toast(locales.find((l) => l.code === code)?.name ?? code, "success");
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {

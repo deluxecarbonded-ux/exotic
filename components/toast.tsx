@@ -24,20 +24,10 @@ export type ToastData = {
 /* supported input kinds — includes legacy "ok"/"err" aliases */
 export type ToastKindInput = ToastKind | "ok" | "err";
 
-/* ── per-kind visual config ───────────────────────────────────
+/* ── per-kind visual config ───────────────────────────────
    Chips stay on the app's pure theme tokens (monochrome surfaces).
-   Each kind is told apart by its icon + a tiny status dot — the
-   single chroma allowed, so "kind" reads at a glance in dark AND
-   light. Achievement gets a soft gold ring (the one celebration
-   exception) plus sparking accents. */
-const DOT: Record<ToastKind, string> = {
-  success: "bg-emerald-400",
-  error: "bg-red-500",
-  info: "bg-sky-400",
-  warning: "bg-amber-400",
-  achievement: "bg-yellow-300",
-};
-
+   Each kind is told apart by its icon; achievement gets a soft
+   gold ring (the one celebration exception) plus sparking accents. */
 const KIND_CHIP: Record<ToastKind, string> = {
   success: "bg-fg text-bg",
   error: "bg-fg text-bg",
@@ -209,7 +199,6 @@ export function ToastItem({
   onDismiss: (id: number) => void;
 }) {
   const reduceMotion = useReducedMotion();
-  const dot = DOT[toast.kind];
   const iconAnim =
     toast.kind === "achievement"
       ? {
@@ -234,16 +223,6 @@ export function ToastItem({
       )}
     >
       {toast.kind === "achievement" && <AchievementAccents />}
-
-      {/* status dot — the only chroma; kind reads at a glance */}
-      <span
-        className={cn(
-          "absolute -start-1 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full",
-          dot
-        )}
-        style={{ boxShadow: "0 0 0 2px var(--bg)" }}
-        aria-hidden
-      />
 
       <motion.span
         initial={{ opacity: 0, scale: 0.3 }}
