@@ -503,6 +503,19 @@
     "numbers": "Siffertangentbord",
     "enter": "Skicka svar"
   },
+  "levelCompletion": {
+    "title": "Nivå {level} klar!",
+    "sub": "Din {diff} nivåtavla — fortsätt klättra",
+    "leaderboard": "Topplista",
+    "you": "Du",
+    "shareBoard": "Dela på spelets topplistor",
+    "shareSocial": "Dela på sociala medier",
+    "dontShare": "Dela inte",
+    "posted": "Delad på topplistorna!",
+    "shared": "Delad!",
+    "beat": "Kan du slå det?",
+    "cta": "Dela på topplistorna"
+  },
   "lb": {
     "wins": "Vinster",
     "sparks": "Gnistor",

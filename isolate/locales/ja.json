@@ -503,6 +503,19 @@
     "numbers": "数字キーボード",
     "enter": "答えを送信"
   },
+  "levelCompletion": {
+    "title": "レベル {level} クリア！",
+    "sub": "{diff} のレベルランキング — さらに上へ",
+    "leaderboard": "ランキング",
+    "you": "あなた",
+    "shareBoard": "ゲームのランキングに共有",
+    "shareSocial": "SNS で共有",
+    "dontShare": "共有しない",
+    "posted": "ランキングに共有しました！",
+    "shared": "共有しました！",
+    "beat": "超えられるかな？",
+    "cta": "ランキングに共有"
+  },
   "lb": {
     "wins": "勝利数",
     "sparks": "スパーク",

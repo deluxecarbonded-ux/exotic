@@ -61,6 +61,19 @@ CREATE TABLE mp.inventory (
   CONSTRAINT inventory_pkey PRIMARY KEY (id),
   CONSTRAINT inventory_player_id_item_id_key UNIQUE (player_id, item_id)
 );
+-- ── table mp.level_shares ──
+CREATE TABLE mp.level_shares (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  player_id uuid NOT NULL,
+  difficulty text NOT NULL,
+  level integer NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT level_shares_difficulty_check CHECK ((difficulty = ANY (ARRAY['easy'::text, 'medium'::text, 'hard'::text]))),
+  CONSTRAINT level_shares_level_check CHECK (((level >= 1) AND (level <= 30))),
+  CONSTRAINT level_shares_player_id_fkey FOREIGN KEY (player_id) REFERENCES mp.profiles(id) ON DELETE CASCADE,
+  CONSTRAINT level_shares_pkey PRIMARY KEY (id),
+  CONSTRAINT level_shares_player_id_difficulty_level_key UNIQUE (player_id, difficulty, level)
+);
 -- ── table mp.player_achievements ──
 CREATE TABLE mp.player_achievements (
   player_id uuid NOT NULL,
@@ -87,7 +100,8 @@ CREATE TABLE mp.profiles (
   games integer NOT NULL DEFAULT 0,
   last_daily date,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
-  email_verified boolean NOT NULL DEFAULT false,
+  email_verified boolean NOT NULL DEFAULT true,
+  levels jsonb NOT NULL DEFAULT '{"easy": 1, "hard": 1, "medium": 1}'::jsonb,
   CONSTRAINT mp_profiles_user_fkey FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE,
   CONSTRAINT profiles_id_fkey FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE,
   CONSTRAINT profiles_pkey PRIMARY KEY (id)
@@ -238,6 +252,19 @@ CREATE TABLE sp.inventory (
   CONSTRAINT inventory_pkey PRIMARY KEY (id),
   CONSTRAINT inventory_player_id_item_id_key UNIQUE (player_id, item_id)
 );
+-- ── table sp.level_shares ──
+CREATE TABLE sp.level_shares (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  player_id uuid NOT NULL,
+  difficulty text NOT NULL,
+  level integer NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT level_shares_difficulty_check CHECK ((difficulty = ANY (ARRAY['easy'::text, 'medium'::text, 'hard'::text]))),
+  CONSTRAINT level_shares_level_check CHECK (((level >= 1) AND (level <= 30))),
+  CONSTRAINT level_shares_player_id_fkey FOREIGN KEY (player_id) REFERENCES sp.profiles(id) ON DELETE CASCADE,
+  CONSTRAINT level_shares_pkey PRIMARY KEY (id),
+  CONSTRAINT level_shares_player_id_difficulty_level_key UNIQUE (player_id, difficulty, level)
+);
 -- ── table sp.player_achievements ──
 CREATE TABLE sp.player_achievements (
   player_id uuid NOT NULL,
@@ -262,7 +289,7 @@ CREATE TABLE sp.profiles (
   last_daily date,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   levels jsonb NOT NULL DEFAULT '{"easy": 1, "hard": 1, "medium": 1}'::jsonb,
-  email_verified boolean NOT NULL DEFAULT false,
+  email_verified boolean NOT NULL DEFAULT true,
   CONSTRAINT profiles_id_fkey FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE,
   CONSTRAINT sp_profiles_user_fkey FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE,
   CONSTRAINT profiles_pkey PRIMARY KEY (id)
@@ -308,7 +335,13 @@ CREATE TABLE sp.transactions (
 );
 -- ═══════════════════════════════ INDEXES ═══════════════════════════════
 CREATE UNIQUE INDEX inventory_player_id_item_id_key ON mp.inventory USING btree (player_id, item_id);
+CREATE UNIQUE INDEX level_shares_player_id_difficulty_level_key ON mp.level_shares USING btree (player_id, difficulty, level);
+CREATE INDEX mp_level_shares_player_idx ON mp.level_shares USING btree (player_id);
 CREATE INDEX mp_profiles_level_idx ON mp.profiles USING btree (level DESC);
+CREATE INDEX mp_profiles_levels_easy_idx ON mp.profiles USING btree (COALESCE(((levels ->> 'easy'::text))::integer, 1) DESC);
+CREATE INDEX mp_profiles_levels_hard_idx ON mp.profiles USING btree (COALESCE(((levels ->> 'hard'::text))::integer, 1) DESC);
+CREATE INDEX mp_profiles_levels_idx ON mp.profiles USING gin (levels);
+CREATE INDEX mp_profiles_levels_medium_idx ON mp.profiles USING btree (COALESCE(((levels ->> 'medium'::text))::integer, 1) DESC);
 CREATE INDEX mp_profiles_novas_idx ON mp.profiles USING btree (novas DESC);
 CREATE INDEX mp_profiles_rank_idx ON mp.profiles USING btree (rank_points DESC);
 CREATE INDEX mp_profiles_streak_idx ON mp.profiles USING btree (best_streak DESC);
@@ -316,7 +349,9 @@ CREATE INDEX mp_profiles_wins_idx ON mp.profiles USING btree (wins DESC);
 CREATE UNIQUE INDEX rooms_code_key ON mp.rooms USING btree (code);
 CREATE UNIQUE INDEX rounds_room_id_match_no_round_no_key ON mp.rounds USING btree (room_id, match_no, round_no);
 CREATE UNIQUE INDEX inventory_player_id_item_id_key ON sp.inventory USING btree (player_id, item_id);
+CREATE UNIQUE INDEX level_shares_player_id_difficulty_level_key ON sp.level_shares USING btree (player_id, difficulty, level);
 CREATE INDEX sp_games_player_idx ON sp.games USING btree (player_id, started_at DESC);
+CREATE INDEX sp_level_shares_player_idx ON sp.level_shares USING btree (player_id);
 CREATE INDEX sp_profiles_level_idx ON sp.profiles USING btree (level DESC);
 CREATE INDEX sp_profiles_sparks_idx ON sp.profiles USING btree (sparks DESC);
 CREATE INDEX sp_profiles_streak_idx ON sp.profiles USING btree (streak DESC);
@@ -328,6 +363,7 @@ ALTER TABLE mp.achievements_catalog ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.answers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.chat ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.inventory ENABLE ROW LEVEL SECURITY;
+ALTER TABLE mp.level_shares ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.player_achievements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mp.room_players ENABLE ROW LEVEL SECURITY;
@@ -339,6 +375,7 @@ ALTER TABLE sp.achievements_catalog ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.clues ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.games ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.inventory ENABLE ROW LEVEL SECURITY;
+ALTER TABLE sp.level_shares ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.player_achievements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sp.questions ENABLE ROW LEVEL SECURITY;
@@ -348,6 +385,8 @@ ALTER TABLE sp.transactions ENABLE ROW LEVEL SECURITY;
 CREATE POLICY mp_ach_cat_select ON mp.achievements_catalog FOR SELECT TO authenticated USING (true);
 CREATE POLICY mp_chat_select ON mp.chat FOR SELECT TO authenticated USING (mp.is_member(room_id));
 CREATE POLICY mp_inventory_select ON mp.inventory FOR SELECT TO authenticated USING ((player_id = auth.uid()));
+CREATE POLICY mp_level_shares_insert ON mp.level_shares FOR INSERT TO authenticated WITH CHECK ((player_id = ( SELECT auth.uid() AS uid)));
+CREATE POLICY mp_level_shares_select ON mp.level_shares FOR SELECT TO public USING (true);
 CREATE POLICY mp_ach_select ON mp.player_achievements FOR SELECT TO authenticated USING ((player_id = auth.uid()));
 CREATE POLICY mp_profiles_select ON mp.profiles FOR SELECT TO authenticated USING (true);
 CREATE POLICY mp_room_players_select ON mp.room_players FOR SELECT TO authenticated USING ((mp.is_member(room_id) OR (EXISTS ( SELECT 1
@@ -363,6 +402,8 @@ CREATE POLICY sp_clues_select ON sp.clues FOR SELECT TO authenticated USING ((EX
   WHERE ((g.id = clues.game_id) AND (g.player_id = auth.uid())))));
 CREATE POLICY sp_games_select ON sp.games FOR SELECT TO authenticated USING ((player_id = auth.uid()));
 CREATE POLICY sp_inventory_select ON sp.inventory FOR SELECT TO authenticated USING ((player_id = auth.uid()));
+CREATE POLICY sp_level_shares_insert ON sp.level_shares FOR INSERT TO authenticated WITH CHECK ((player_id = ( SELECT auth.uid() AS uid)));
+CREATE POLICY sp_level_shares_select ON sp.level_shares FOR SELECT TO public USING (true);
 CREATE POLICY sp_ach_select ON sp.player_achievements FOR SELECT TO authenticated USING ((player_id = auth.uid()));
 CREATE POLICY sp_profiles_select ON sp.profiles FOR SELECT TO authenticated USING (true);
 CREATE POLICY sp_shop_select ON sp.shop_items FOR SELECT TO authenticated USING (true);
@@ -445,6 +486,30 @@ begin
   end if;
   return '{}';
 end $function$
+;
+
+-- mp.bump_level_on_win
+CREATE OR REPLACE FUNCTION mp.bump_level_on_win()
+ RETURNS trigger
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+begin
+  if new.status = 'finished' and new.winner_id is not null
+     and (old.status is distinct from new.status
+          or old.winner_id is distinct from new.winner_id) then
+    update mp.profiles set
+      levels = jsonb_set(
+        coalesce(levels, '{"easy": 1, "medium": 1, "hard": 1}'::jsonb),
+        array[new.difficulty],
+        to_jsonb(least(30, coalesce((levels->>new.difficulty)::int, 1) + 1))
+      )
+    where id = new.winner_id;
+  end if;
+  return new;
+end;
+$function$
 ;
 
 -- mp.buy_item
@@ -672,28 +737,6 @@ begin
 end $function$
 ;
 
--- mp.ensure_profile
-CREATE OR REPLACE FUNCTION mp.ensure_profile()
- RETURNS jsonb
- LANGUAGE plpgsql
- SECURITY DEFINER
- SET search_path TO ''
-AS $function$
-declare uid uuid := auth.uid(); uname text;
-begin
-  if uid is null then raise exception 'Exotic: sign in first'; end if;
-  if exists (select 1 from mp.profiles where id = uid) then
-    return jsonb_build_object('ok', true);
-  end if;
-  uname := coalesce(
-    nullif(trim(coalesce((select raw_user_meta_data->>'username' from auth.users where id = uid), '')), ''),
-    (select username from sp.profiles where id = uid),
-    'Agent');
-  insert into mp.profiles (id, username) values (uid, left(uname, 16));
-  return jsonb_build_object('ok', true, 'created', true);
-end $function$
-;
-
 -- mp.equip_item
 CREATE OR REPLACE FUNCTION mp.equip_item(p_item text, p_on boolean)
  RETURNS jsonb
@@ -836,6 +879,23 @@ AS $function$
 $function$
 ;
 
+-- mp.leaderboard_by_level
+CREATE OR REPLACE FUNCTION mp.leaderboard_by_level(p_difficulty text DEFAULT 'easy'::text)
+ RETURNS TABLE(id uuid, username text, avatar text, frame text, level integer, cleared integer, total integer)
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+  select p.id, p.username, p.avatar, p.frame, p.level,
+         coalesce((p.levels->>p_difficulty)::int, 1) as cleared,
+         30 as total
+  from mp.profiles p
+  where p.games > 0
+  order by cleared desc, p.level desc, p.wins desc
+  limit 20
+$function$
+;
+
 -- mp.leave_room
 CREATE OR REPLACE FUNCTION mp.leave_room(p_room uuid)
  RETURNS jsonb
@@ -903,6 +963,26 @@ AS $function$
   end
   from acc
 $function$
+;
+
+-- mp.register_profile
+CREATE OR REPLACE FUNCTION mp.register_profile(p_username text)
+ RETURNS jsonb
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO 'mp', 'public'
+AS $function$
+declare uid uuid := auth.uid(); uname text;
+begin
+  if uid is null then raise exception 'Exotic: sign in first'; end if;
+  if exists (select 1 from mp.profiles where id = uid) then
+    return jsonb_build_object('ok', true, 'exists', true);
+  end if;
+  uname := left(btrim(coalesce(p_username, '')), 16);
+  if length(uname) < 2 then return jsonb_build_object('ok', false, 'error', 'username'); end if;
+  insert into mp.profiles (id, username) values (uid, uname);
+  return jsonb_build_object('ok', true, 'created', true);
+end $function$
 ;
 
 -- mp.rematch
@@ -1014,6 +1094,27 @@ begin
   where room_id = p_room and player_id = auth.uid();
   return jsonb_build_object('ok', true);
 end $function$
+;
+
+-- mp.share_level_completion
+CREATE OR REPLACE FUNCTION mp.share_level_completion(p_difficulty text, p_level integer)
+ RETURNS jsonb
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+begin
+  if auth.uid() is null then raise exception 'Exotic: sign in first'; end if;
+  if p_difficulty not in ('easy','medium','hard') then
+    raise exception 'Exotic: unknown difficulty'; end if;
+  if p_level < 1 or p_level > 30 then
+    raise exception 'Exotic: bad level'; end if;
+  insert into mp.level_shares (player_id, difficulty, level)
+  values (auth.uid(), p_difficulty, p_level)
+  on conflict (player_id, difficulty, level) do nothing;
+  return jsonb_build_object('ok', true);
+end;
+$function$
 ;
 
 -- mp.start_match
@@ -1267,28 +1368,6 @@ begin
 end $function$
 ;
 
--- sp.ensure_profile
-CREATE OR REPLACE FUNCTION sp.ensure_profile()
- RETURNS jsonb
- LANGUAGE plpgsql
- SECURITY DEFINER
- SET search_path TO ''
-AS $function$
-declare uid uuid := auth.uid(); uname text;
-begin
-  if uid is null then raise exception 'Exotic: sign in first'; end if;
-  if exists (select 1 from sp.profiles where id = uid) then
-    return jsonb_build_object('ok', true);
-  end if;
-  uname := coalesce(
-    nullif(trim(coalesce((select raw_user_meta_data->>'username' from auth.users where id = uid), '')), ''),
-    (select username from mp.profiles where id = uid),
-    'Player');
-  insert into sp.profiles (id, username) values (uid, left(uname, 16));
-  return jsonb_build_object('ok', true, 'created', true);
-end $function$
-;
-
 -- sp.equip_item
 CREATE OR REPLACE FUNCTION sp.equip_item(p_item text, p_on boolean)
  RETURNS jsonb
@@ -1353,6 +1432,23 @@ AS $function$
 $function$
 ;
 
+-- sp.leaderboard_by_level
+CREATE OR REPLACE FUNCTION sp.leaderboard_by_level(p_difficulty text DEFAULT 'easy'::text)
+ RETURNS TABLE(id uuid, username text, avatar text, level integer, cleared integer, total integer)
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+  select p.id, p.username, p.avatar, p.level,
+         coalesce((p.levels->>p_difficulty)::int, 1) as cleared,
+         30 as total
+  from sp.profiles p
+  where p.username <> 'Player'
+  order by cleared desc, p.level desc, p.wins desc
+  limit 20
+$function$
+;
+
 -- sp.norm_answer
 CREATE OR REPLACE FUNCTION sp.norm_answer(v text, kind text)
  RETURNS text
@@ -1383,6 +1479,26 @@ AS $function$
   end
   from acc
 $function$
+;
+
+-- sp.register_profile
+CREATE OR REPLACE FUNCTION sp.register_profile(p_username text)
+ RETURNS jsonb
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO 'sp', 'public'
+AS $function$
+declare uid uuid := auth.uid(); uname text;
+begin
+  if uid is null then raise exception 'Exotic: sign in first'; end if;
+  if exists (select 1 from sp.profiles where id = uid) then
+    return jsonb_build_object('ok', true, 'exists', true);
+  end if;
+  uname := left(btrim(coalesce(p_username, '')), 16);
+  if length(uname) < 2 then return jsonb_build_object('ok', false, 'error', 'username'); end if;
+  insert into sp.profiles (id, username) values (uid, uname);
+  return jsonb_build_object('ok', true, 'created', true);
+end $function$
 ;
 
 -- sp.rename
@@ -1449,6 +1565,27 @@ begin
     category = excluded.category, tries = 0, created_at = now();
   return jsonb_build_object('ok', true, 'answer_len', alen);
 end $function$
+;
+
+-- sp.share_level_completion
+CREATE OR REPLACE FUNCTION sp.share_level_completion(p_difficulty text, p_level integer)
+ RETURNS jsonb
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+begin
+  if auth.uid() is null then raise exception 'Exotic: sign in first'; end if;
+  if p_difficulty not in ('easy','medium','hard') then
+    raise exception 'Exotic: unknown difficulty'; end if;
+  if p_level < 1 or p_level > 30 then
+    raise exception 'Exotic: bad level'; end if;
+  insert into sp.level_shares (player_id, difficulty, level)
+  values (auth.uid(), p_difficulty, p_level)
+  on conflict (player_id, difficulty, level) do nothing;
+  return jsonb_build_object('ok', true);
+end;
+$function$
 ;
 
 -- sp.start_game
@@ -1695,18 +1832,23 @@ CREATE OR REPLACE FUNCTION public.handle_new_user()
  RETURNS trigger
  LANGUAGE plpgsql
  SECURITY DEFINER
- SET search_path TO ''
+ SET search_path TO 'public'
 AS $function$
+declare
+  m text;
 begin
+  m := lower(coalesce(new.raw_user_meta_data->>'mode', ''));
   if new.email is null then
     -- legacy device vault (anonymous) → single player only
     insert into sp.profiles (id) values (new.id) on conflict (id) do nothing;
-  else
-    -- email identity → duel account AND solo vault (same username)
+  elsif m = 'mp' then
+    -- Duel signup → Duel profile ONLY (Solo self-registers on entry)
     insert into mp.profiles (id, username)
     values (new.id,
             coalesce(nullif(trim(coalesce(new.raw_user_meta_data->>'username', '')), ''), 'Agent'))
     on conflict (id) do nothing;
+  else
+    -- Solo signup (or manual/dashboard creation) → Solo profile ONLY
     insert into sp.profiles (id, username)
     values (new.id,
             coalesce(nullif(trim(coalesce(new.raw_user_meta_data->>'username', '')), ''), 'Player'))
@@ -1718,6 +1860,7 @@ end $function$
 
 -- ═══════════════════════════════ TRIGGERS ═══════════════════════════════
 CREATE TRIGGER mp_achs_profile AFTER UPDATE ON mp.profiles FOR EACH ROW EXECUTE FUNCTION mp.achs_profile_trg();
+CREATE TRIGGER mp_rooms_bump_level AFTER UPDATE ON mp.rooms FOR EACH ROW EXECUTE FUNCTION mp.bump_level_on_win();
 CREATE TRIGGER mp_rooms_touch BEFORE UPDATE ON mp.rooms FOR EACH ROW EXECUTE FUNCTION mp.touch_updated_at();
 CREATE TRIGGER sp_achs_game AFTER UPDATE OF status ON sp.games FOR EACH ROW WHEN (((old.status = 'active'::text) AND (new.status = ANY (ARRAY['won'::text, 'lost'::text])))) EXECUTE FUNCTION sp.achs_game_trg();
 CREATE TRIGGER sp_achs_profile AFTER UPDATE ON sp.profiles FOR EACH ROW EXECUTE FUNCTION sp.achs_profile_trg();
@@ -1796,11 +1939,12 @@ INSERT INTO sp.shop_items (id, category, icon, name, description, price, effect,
 ON CONFLICT DO NOTHING;
 
 -- ═══════════════════════════════ REALTIME ═══════════════════════════════
--- 21 tables stream live (RLS guards every stream):
+-- 23 tables stream live (RLS guards every stream):
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.achievements_catalog;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.answers;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.chat;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.inventory;
+ALTER PUBLICATION supabase_realtime ADD TABLE mp.level_shares;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.player_achievements;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.profiles;
 ALTER PUBLICATION supabase_realtime ADD TABLE mp.room_players;
@@ -1813,6 +1957,7 @@ ALTER PUBLICATION supabase_realtime ADD TABLE sp.achievements_catalog;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.clues;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.games;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.inventory;
+ALTER PUBLICATION supabase_realtime ADD TABLE sp.level_shares;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.player_achievements;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.profiles;
 ALTER PUBLICATION supabase_realtime ADD TABLE sp.questions;

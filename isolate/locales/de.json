@@ -503,6 +503,19 @@
     "numbers": "Zahlentastatur",
     "enter": "Antwort senden"
   },
+  "levelCompletion": {
+    "title": "Level {level} geschafft!",
+    "sub": "Deine {diff}-Level-Tafel — steig weiter auf",
+    "leaderboard": "Bestenliste",
+    "you": "Du",
+    "shareBoard": "In den Spiel-Bestenlisten teilen",
+    "shareSocial": "In sozialen Medien teilen",
+    "dontShare": "Nicht teilen",
+    "posted": "In den Bestenlisten geteilt!",
+    "shared": "Geteilt!",
+    "beat": "Kannst du das schlagen?",
+    "cta": "In den Bestenlisten teilen"
+  },
   "lb": {
     "wins": "Siege",
     "sparks": "Funken",

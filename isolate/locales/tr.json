@@ -503,6 +503,19 @@
     "numbers": "Rakam klavyesi",
     "enter": "Cevabı gönder"
   },
+  "levelCompletion": {
+    "title": "Seviye {level} tamamlandı!",
+    "sub": "{diff} seviye tablonuz — tırmanmaya devam edin",
+    "leaderboard": "Liderlik tablosu",
+    "you": "Sen",
+    "shareBoard": "Oyun liderlik tablolarında paylaş",
+    "shareSocial": "Sosyal medyada paylaş",
+    "dontShare": "Paylaşma",
+    "posted": "Liderlik tablolarında paylaşıldı!",
+    "shared": "Paylaşıldı!",
+    "beat": "Daha iyisini yapabilir misin?",
+    "cta": "Liderlik tablolarında paylaş"
+  },
   "lb": {
     "wins": "Galibiyetler",
     "sparks": "Kıvılcımlar",

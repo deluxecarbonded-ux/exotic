@@ -503,6 +503,19 @@
     "numbers": "Numbers keyboard",
     "enter": "Submit answer"
   },
+  "levelCompletion": {
+    "title": "Level {level} clear!",
+    "sub": "Your {diff} level board — keep climbing",
+    "leaderboard": "Leaderboard",
+    "you": "You",
+    "shareBoard": "Share to game leaderboards",
+    "shareSocial": "Share on social media",
+    "dontShare": "Don't share",
+    "posted": "Shared to the leaderboards!",
+    "shared": "Shared!",
+    "beat": "Can you beat that?",
+    "cta": "Share to leaderboards"
+  },
   "lb": {
     "wins": "Wins",
     "sparks": "Sparks",

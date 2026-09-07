@@ -503,6 +503,19 @@
     "numbers": "Teclado numérico",
     "enter": "Enviar respuesta"
   },
+  "levelCompletion": {
+    "title": "¡Nivel {level} superado!",
+    "sub": "Tu tabla de niveles {diff} — sigue subiendo",
+    "leaderboard": "Clasificación",
+    "you": "Tú",
+    "shareBoard": "Compartir en las clasificaciones del juego",
+    "shareSocial": "Compartir en redes sociales",
+    "dontShare": "No compartir",
+    "posted": "¡Compartido en las clasificaciones!",
+    "shared": "¡Compartido!",
+    "beat": "¿Puedes superarlo?",
+    "cta": "Compartir en las clasificaciones"
+  },
   "lb": {
     "wins": "Victorias",
     "sparks": "Chispas",

@@ -37,6 +37,7 @@ export type MpProfile = {
   last_daily: string | null;
   created_at: string;
   email_verified?: boolean;
+  levels?: Record<string, number>;
 };
 
 /* Live profiles — updates via Supabase realtime, zero refreshes.
