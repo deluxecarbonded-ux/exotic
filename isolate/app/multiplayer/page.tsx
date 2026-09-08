@@ -129,6 +129,7 @@ export default function MpLobby() {
   };
 
   const quickMatch = async () => {
+    sfx.shuffle();
     if (rooms.length > 0) {
       await joinByCode(rooms[0].code);
     } else {

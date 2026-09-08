@@ -124,14 +124,10 @@
     "easy": "Facile",
     "medium": "Moyen",
     "hard": "Difficile",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — double les Étincelles cette partie (consomme 1)",
     "stats": "Votre palmarès",
     "games": "Parties",
     "cracked": "Percés",
-    "bestTime": "Meilleur temps",
     "board": "Classement",
     "noBoost": "Aucun Nova Boost. Prenez-en un à la boutique",
     "campaign": "Campagne · 30 niveaux",
@@ -141,7 +137,6 @@
     "unlocked": "Niveau {n} débloqué !"
   },
   "game": {
-    "timer": "Temps",
     "round": "Question",
     "correct": "Correct !",
     "wrong": "Pas celui-là",
@@ -163,7 +158,6 @@
     "oracleEmpty": "L'Oracle médite la question…",
     "revealDigit": "Lentille à Chiffre",
     "extraGuess": "Clé de Secours",
-    "timeFreeze": "Éclat Chrono",
     "abandon": "Abandonner ?",
     "abandonQ": "Abandonner ce niveau ?",
     "levelUp": "NIVEAU SUPÉRIEUR",
@@ -193,8 +187,6 @@
     "levelSelect": "Sélection de niveau",
     "retry": "Réessayer",
     "theAnswer": "La réponse était",
-    "spareKeyUsed": "Clé de Réserve · +45s",
-    "spareKeyHint": "S'active seule à zéro · +45s",
     "hints": "Indices"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Lentille Digitale",
       "d": "Révèle un caractère de la réponse et sa position"
-    },
-    "extra-guess": {
-      "n": "Clé de Réserve",
-      "d": "S'active toute seule à zéro — ajoute 45 secondes"
-    },
-    "time-freeze": {
-      "n": "Éclat Chrono",
-      "d": "Ajoute 60 secondes au chrono de la partie"
     },
     "oracle": {
       "n": "L'Oracle",
@@ -400,14 +384,12 @@
     "first_win": "Première Fissure",
     "streak_3": "Coup du Chapeau",
     "streak_5": "Imbattable",
-    "speed_60": "Éclair",
     "ghost": "Protocole Fantôme",
     "first_buy": "Thérapie Retail",
     "level_5": "Étoile Montante",
     "rich_500": "Baron des Étincelles",
     "win_10": "Dix Fissures",
     "win_50": "Cinquante Fissures",
-    "speed_30": "Coup de Tonnerre",
     "one_shot": "En Plein Centre",
     "level_10": "Esprit Suprême",
     "rich_1000": "Magnat des Étincelles",
@@ -435,8 +417,6 @@
     "level_5": "Étoile Montante",
     "win_10": "Dix Fissures",
     "win_50": "Cinquante Fissures",
-    "speed_60": "Éclair",
-    "speed_30": "Coup de Tonnerre",
     "ghost": "Protocole Fantôme",
     "one_shot": "En Plein Centre",
     "level_10": "Esprit Suprême",
@@ -522,7 +502,6 @@
     "wins": "Victoires",
     "sparks": "Étincelles",
     "level": "Niveau",
-    "bestTime": "Meilleur Temps",
     "streak": "Série",
     "rank": "Rang",
     "novas": "Novas"

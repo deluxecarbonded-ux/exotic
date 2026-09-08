@@ -2,14 +2,6 @@ export function cn(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
 
-export function fmtTime(totalSeconds: number, num: (n: number) => string = String) {
-  const s = Math.max(0, Math.floor(totalSeconds));
-  const m = Math.floor(s / 60);
-  const r = String(s % 60).padStart(2, "0");
-  const digits = r.split("").map((c) => num(Number(c))).join("");
-  return `${num(m)}:${digits}`;
-}
-
 export function timeAgo(iso: string, locale = "en") {
   try {
     return new Intl.DateTimeFormat(locale, {

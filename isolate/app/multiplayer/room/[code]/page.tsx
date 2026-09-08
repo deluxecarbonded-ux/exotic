@@ -218,6 +218,12 @@ function RoomInner() {
           if (r.status === "active" && prevStatus !== "active") {
             sfx.phaserup();
             toast(t("mp.started"), "info");
+            setTimeout(() => sfx.question(), 700); /* first question lands */
+          } else if (
+            r.status === "active" &&
+            (r.round_no > room.round_no || r.match_no > room.match_no)
+          ) {
+            sfx.question(); /* next round's question arrived */
           }
           if (r.status === "finished" && prevStatus !== "finished") {
             if (r.winner_id === user.id) {
@@ -225,6 +231,8 @@ function RoomInner() {
               setConfetti(true);
             } else if (r.winner_id) {
               sfx.lose();
+            } else {
+              sfx.phaserdown(); /* draw */
             }
           }
           loadAll(rid, r.match_no);
@@ -374,6 +382,7 @@ function RoomInner() {
   const startDuel = async () => {
     const { error } = await mpDb().rpc("start_match", { p_room: room!.id });
     if (error) toast(gameError(error, t), "err");
+    else sfx.confirm2();
   };
 
   const answer = async (value: string) => {
@@ -690,7 +699,11 @@ function RoomInner() {
                 {t("mp.chat")}
               </span>
               <button
-                onClick={() => setEmoteOpen((v) => !v)}
+                onClick={() => {
+                  if (emoteOpen) sfx.close();
+                  else sfx.open();
+                  setEmoteOpen(!emoteOpen);
+                }}
                 className="press grid h-9 w-9 place-items-center rounded-full bg-soft2"
                 aria-label={t("a11y.emotes")}
               >

@@ -105,13 +105,18 @@ create table if not exists mp.level_shares (
 alter table sp.level_shares enable row level security;
 alter table mp.level_shares enable row level security;
 
+drop policy if exists "sp_level_shares_select" on sp.level_shares;
 create policy "sp_level_shares_select" on sp.level_shares
   for select using (true);
+drop policy if exists "sp_level_shares_insert" on sp.level_shares;
 create policy "sp_level_shares_insert" on sp.level_shares
   for insert to authenticated with check (player_id = (select auth.uid()));
 
+drop policy if exists "mp_level_shares_select" on mp.level_shares;
 create policy "mp_level_shares_select" on mp.level_shares
   for select using (true);
+drop policy if exists "mp_level_shares_insert" on mp.level_shares
+;
 create policy "mp_level_shares_insert" on mp.level_shares
   for insert to authenticated with check (player_id = (select auth.uid()));
 

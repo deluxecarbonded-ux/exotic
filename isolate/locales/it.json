@@ -124,14 +124,10 @@
     "easy": "Facile",
     "medium": "Media",
     "hard": "Difficile",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — doppia Scintilla in questa partita (consuma 1)",
     "stats": "Il tuo ruolino",
     "games": "Partite",
     "cracked": "Aperti",
-    "bestTime": "Miglior tempo",
     "board": "Classifica",
     "noBoost": "Non hai Nova Boost. Prendine uno nel negozio",
     "campaign": "Campagna · 30 livelli",
@@ -141,7 +137,6 @@
     "unlocked": "Livello {n} sbloccato!"
   },
   "game": {
-    "timer": "Tempo",
     "round": "Domanda",
     "correct": "Corretto!",
     "wrong": "Non è quella",
@@ -163,7 +158,6 @@
     "oracleEmpty": "L'Oracolo riflette sulla domanda…",
     "revealDigit": "Lente Digitale",
     "extraGuess": "Chiave di Scorta",
-    "timeFreeze": "Scheggia Crono",
     "abandon": "Arrendersi?",
     "abandonQ": "Lasciare questo livello?",
     "levelUp": "LIVELLO SUPERIORE",
@@ -193,8 +187,6 @@
     "levelSelect": "Selezione livello",
     "retry": "Riprova",
     "theAnswer": "La risposta era",
-    "spareKeyUsed": "Chiave di Riserva · +45s",
-    "spareKeyHint": "Si attiva da solo allo scadere · +45s",
     "hints": "Indizi"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Lente Digitale",
       "d": "Rivela un carattere della risposta e la sua posizione"
-    },
-    "extra-guess": {
-      "n": "Chiave di Riserva",
-      "d": "Si attiva da solo allo scadere — aggiunge 45 secondi"
-    },
-    "time-freeze": {
-      "n": "Frammento Crono",
-      "d": "Aggiunge 60 secondi al timer della partita"
     },
     "oracle": {
       "n": "L'Oracolo",
@@ -400,14 +384,12 @@
     "first_win": "Prima Crepa",
     "streak_3": "Tripletta",
     "streak_5": "Inarrestabile",
-    "speed_60": "Fulmine",
     "ghost": "Protocollo Fantasma",
     "first_buy": "Terapia dello Shopping",
     "level_5": "Stella Nascente",
     "rich_500": "Barone delle Scintille",
     "win_10": "Dieci Crepe",
     "win_50": "Cinquanta Crepe",
-    "speed_30": "Saetta",
     "one_shot": "Occhio di Bue",
     "level_10": "Mente Suprema",
     "rich_1000": "Magnate delle Scintille",
@@ -435,8 +417,6 @@
     "level_5": "Stella Nascente",
     "win_10": "Dieci Crepe",
     "win_50": "Cinquanta Crepe",
-    "speed_60": "Fulmine",
-    "speed_30": "Saetta",
     "ghost": "Protocollo Fantasma",
     "one_shot": "Occhio di Bue",
     "level_10": "Mente Suprema",
@@ -522,7 +502,6 @@
     "wins": "Vittorie",
     "sparks": "Scintille",
     "level": "Livello",
-    "bestTime": "Tempo Record",
     "streak": "Serie",
     "rank": "Grado",
     "novas": "Novas"

@@ -126,14 +126,10 @@
     "easy": "Easy",
     "medium": "Medium",
     "hard": "Hard",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — double Sparks this run (consumes 1)",
     "stats": "Your record",
     "games": "Games",
     "cracked": "Cracked",
-    "bestTime": "Best time",
     "board": "Leaderboard",
     "noBoost": "You own no Nova Boost. Grab one in the shop",
     "campaign": "Campaign · 30 levels",
@@ -143,7 +139,6 @@
     "unlocked": "Level {n} unlocked!"
   },
   "game": {
-    "timer": "Time",
     "round": "Question",
     "correct": "Correct!",
     "wrong": "Not that one",
@@ -165,7 +160,6 @@
     "oracleEmpty": "The Oracle ponders the question…",
     "revealDigit": "Digit Lens",
     "extraGuess": "Spare Key",
-    "timeFreeze": "Chrono Shard",
     "abandon": "Give up?",
     "abandonQ": "Leave this level behind?",
     "abandoned": "Level Abandoned",
@@ -196,8 +190,6 @@
     "levelSelect": "Level Select",
     "retry": "Retry",
     "theAnswer": "The answer was",
-    "spareKeyUsed": "Spare Key · +45s",
-    "spareKeyHint": "Auto-used when the timer hits zero · +45s",
     "hints": "Hints"
   },
   "mp": {
@@ -292,14 +284,6 @@
     "reveal": {
       "n": "Digit Lens",
       "d": "Reveals one character of the answer and its position"
-    },
-    "extra-guess": {
-      "n": "Spare Key",
-      "d": "Auto-used when the timer hits zero — adds 45 seconds"
-    },
-    "time-freeze": {
-      "n": "Chrono Shard",
-      "d": "Adds 60 seconds to the current run timer"
     },
     "oracle": {
       "n": "The Oracle",
@@ -404,14 +388,12 @@
     "first_win": "First Crack",
     "streak_3": "Hat Trick",
     "streak_5": "Unstoppable",
-    "speed_60": "Lightning",
     "ghost": "Ghost Protocol",
     "first_buy": "Retail Therapy",
     "level_5": "Rising Star",
     "rich_500": "Spark Baron",
     "win_10": "Ten Cracks",
     "win_50": "Fifty Cracks",
-    "speed_30": "Thunderbolt",
     "one_shot": "Bullseye",
     "level_10": "Supreme Mind",
     "rich_1000": "Spark Tycoon",
@@ -439,8 +421,6 @@
     "level_5": "Rising Star",
     "win_10": "Ten Cracks",
     "win_50": "Fifty Cracks",
-    "speed_60": "Lightning",
-    "speed_30": "Thunderbolt",
     "ghost": "Ghost Protocol",
     "one_shot": "Bullseye",
     "level_10": "Supreme Mind",
@@ -526,7 +506,6 @@
     "wins": "Wins",
     "sparks": "Sparks",
     "level": "Level",
-    "bestTime": "Best Time",
     "streak": "Streak",
     "rank": "Rank",
     "novas": "Novas"

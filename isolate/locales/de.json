@@ -124,14 +124,10 @@
     "easy": "Leicht",
     "medium": "Mittel",
     "hard": "Schwer",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — doppelte Funken in dieser Runde (verbraucht 1)",
     "stats": "Deine Bilanz",
     "games": "Spiele",
     "cracked": "Geknackt",
-    "bestTime": "Bestzeit",
     "board": "Bestenliste",
     "noBoost": "Kein Nova Boost im Besitz. Hol dir einen im Shop",
     "campaign": "Kampagne · 30 Level",
@@ -141,7 +137,6 @@
     "unlocked": "Level {n} freigeschaltet!"
   },
   "game": {
-    "timer": "Zeit",
     "round": "Frage",
     "correct": "Richtig!",
     "wrong": "Nicht diese",
@@ -163,7 +158,6 @@
     "oracleEmpty": "Das Orakel sinnt über die Frage nach…",
     "revealDigit": "Ziffern-Linse",
     "extraGuess": "Zweitschlüssel",
-    "timeFreeze": "Chrono-Scherbe",
     "abandon": "Aufgeben?",
     "abandonQ": "Dieses Level aufgeben?",
     "levelUp": "LEVEL UP",
@@ -193,8 +187,6 @@
     "levelSelect": "Level-Auswahl",
     "retry": "Erneut versuchen",
     "theAnswer": "Die Antwort war",
-    "spareKeyUsed": "Reserveschlüssel · +45s",
-    "spareKeyHint": "Löst sich bei null automatisch aus · +45s",
     "hints": "Hinweise"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Ziffernlinse",
       "d": "Deckt ein Zeichen der Antwort und seine Position auf"
-    },
-    "extra-guess": {
-      "n": "Ersatzschlüssel",
-      "d": "Löst sich bei null automatisch aus — 45 Sekunden extra"
-    },
-    "time-freeze": {
-      "n": "Chrono-Splitter",
-      "d": "Fügt 60 Sekunden zum Timer des Laufs hinzu"
     },
     "oracle": {
       "n": "Das Orakel",
@@ -400,14 +384,12 @@
     "first_win": "Erster Knack",
     "streak_3": "Hattrick",
     "streak_5": "Unaufhaltsam",
-    "speed_60": "Blitz",
     "ghost": "Geist-Protokoll",
     "first_buy": "Kauftherapie",
     "level_5": "Aufsteigender Stern",
     "rich_500": "Funkenbaron",
     "win_10": "Zehn Knacks",
     "win_50": "Fünfzig Knacks",
-    "speed_30": "Donnerschlag",
     "one_shot": "Volltreffer",
     "level_10": "Superverstand",
     "rich_1000": "Funkenmagnat",
@@ -435,8 +417,6 @@
     "level_5": "Aufsteigender Stern",
     "win_10": "Zehn Knacks",
     "win_50": "Fünfzig Knacks",
-    "speed_60": "Blitz",
-    "speed_30": "Donnerschlag",
     "ghost": "Geist-Protokoll",
     "one_shot": "Volltreffer",
     "level_10": "Superverstand",
@@ -522,7 +502,6 @@
     "wins": "Siege",
     "sparks": "Funken",
     "level": "Level",
-    "bestTime": "Bestzeit",
     "streak": "Serie",
     "rank": "Rang",
     "novas": "Novas"

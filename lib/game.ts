@@ -19,13 +19,6 @@ export type AIQuestion = {
 /* ── 30-level campaign per difficulty ── */
 export const MAX_LEVEL = 30;
 
-/* every level climbs: a little less time as you go deeper */
-export function levelTime(difficulty: string, level: number) {
-  const lvl = Math.min(MAX_LEVEL, Math.max(1, level || 1));
-  const base = difficulty === "easy" ? 240 : difficulty === "medium" ? 180 : 150;
-  return Math.max(60, base - (lvl - 1) * 5);
-}
-
 /* Normalize a typed answer the same way the server does. */
 export function normalizeAnswer(v: string, kind: "word" | "number") {
   let out = (v || "").trim().toLowerCase();

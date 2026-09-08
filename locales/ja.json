@@ -124,14 +124,10 @@
     "easy": "イージー",
     "medium": "ノーマル",
     "hard": "ハード",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "ノヴァブースト — 今回のスパーク2倍（1個消費）",
     "stats": "あなたの戦績",
     "games": "試合数",
     "cracked": "解読数",
-    "bestTime": "最速タイム",
     "board": "リーダーボード",
     "noBoost": "ノヴァブーストを持っていません。ショップで入手しよう",
     "campaign": "キャンペーン · 30レベル",
@@ -141,7 +137,6 @@
     "unlocked": "レベル{n}解除！"
   },
   "game": {
-    "timer": "時間",
     "round": "問題",
     "correct": "正解！",
     "wrong": "それは違う",
@@ -163,7 +158,6 @@
     "oracleEmpty": "オラクルは問題を熟考している…",
     "revealDigit": "数字レンズ",
     "extraGuess": "予備キー",
-    "timeFreeze": "時間結晶",
     "abandon": "諦める？",
     "abandonQ": "このレベルを諦める？",
     "levelUp": "レベルアップ",
@@ -193,8 +187,6 @@
     "levelSelect": "レベル選択",
     "retry": "再試行",
     "theAnswer": "答えは",
-    "spareKeyUsed": "スペアキー · +45秒",
-    "spareKeyHint": "タイマーがゼロで自動使用 · +45秒",
     "hints": "ヒント"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "デジットレンズ",
       "d": "答えの文字を一つとその位置を明かす"
-    },
-    "extra-guess": {
-      "n": "スペアキー",
-      "d": "タイマーがゼロで自動使用 — 45秒追加"
-    },
-    "time-freeze": {
-      "n": "クロノの欠片",
-      "d": "ランのタイマーに60秒追加"
     },
     "oracle": {
       "n": "オラクル",
@@ -400,14 +384,12 @@
     "first_win": "初の解読",
     "streak_3": "ハットトリック",
     "streak_5": "止まらない",
-    "speed_60": "稲妻",
     "ghost": "ゴースト Protocol",
     "first_buy": "買い物療法",
     "level_5": "新星",
     "rich_500": "スパーク男爵",
     "win_10": "10回解読",
     "win_50": "50回解読",
-    "speed_30": "雷鳴",
     "one_shot": "ど真ん中",
     "level_10": "至高の頭脳",
     "rich_1000": "スパーク大王",
@@ -435,8 +417,6 @@
     "level_5": "新星",
     "win_10": "10回解読",
     "win_50": "50回解読",
-    "speed_60": "稲妻",
-    "speed_30": "雷鳴",
     "ghost": "ゴースト Protocol",
     "one_shot": "ど真ん中",
     "level_10": "至高の頭脳",
@@ -522,7 +502,6 @@
     "wins": "勝利数",
     "sparks": "スパーク",
     "level": "レベル",
-    "bestTime": "最速タイム",
     "streak": "連勝",
     "rank": "ランク",
     "novas": "ノヴァ"

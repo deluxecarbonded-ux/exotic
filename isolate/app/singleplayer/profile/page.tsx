@@ -8,11 +8,10 @@ import { useSpSession, spDb, sp } from "@/lib/supabase";
 import { useSpProfile } from "@/hooks/use-profiles";
 import { Button, Card, Input, Pill, SectionTitle, Stat, Spinner, Empty } from "@/components/ui";
 import { Avatar, DynIcon, ICONS } from "@/components/icons";
-import { fmtTime, pct, timeAgo } from "@/lib/utils";
+import { pct, timeAgo } from "@/lib/utils";
 import {
   Trophy,
   Flame,
-  Timer,
   CheckCircle2,
   Package,
   Medal,
@@ -180,11 +179,6 @@ export default function SpProfile() {
                 <Stat label={t("sp.games")} value={num(profile.games)} icon={<Trophy size={13} />} />
                 <Stat label={t("sp.cracked")} value={num(profile.wins)} icon={<CheckCircle2 size={13} />} />
                 <Stat label={t("profile.winRate")} value={pct(profile.wins, profile.games - profile.wins, num)} icon={<Medal size={13} />} />
-                <Stat
-                  label={t("sp.bestTime")}
-                  value={profile.best_time ? fmtTime(profile.best_time, num) : "—"}
-                  icon={<Timer size={13} />}
-                />
               </div>
 
               <Card className="animate-fade-up">

@@ -18,7 +18,7 @@ import {
   KeyRound,
   Lightbulb,
   Hash,
-  Timer,
+  Trophy,
 } from "lucide-react";
 import { sfx } from "@/lib/sound";
 import { cn } from "@/lib/utils";
@@ -68,7 +68,7 @@ export default function Landing() {
     { icon: Hash, text: t("landing.s1") },
     { icon: Lightbulb, text: t("landing.s2") },
     { icon: KeyRound, text: t("landing.s3") },
-    { icon: Timer, text: t("landing.s4") },
+    { icon: Trophy, text: t("landing.s4") },
   ];
 
   return (

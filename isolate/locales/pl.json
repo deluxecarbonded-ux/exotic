@@ -124,14 +124,10 @@
     "easy": "Łatwy",
     "medium": "Średni",
     "hard": "Trudny",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — podwójne Iskry w tej rozgrywce (zużywa 1)",
     "stats": "Twój bilans",
     "games": "Gry",
     "cracked": "Złamane",
-    "bestTime": "Najlepszy czas",
     "board": "Ranking",
     "noBoost": "Nie masz Nova Boost. Kup go w sklepie",
     "campaign": "Kampania · 30 poziomów",
@@ -141,7 +137,6 @@
     "unlocked": "ODBLOKOWANO poziom {n}!"
   },
   "game": {
-    "timer": "Czas",
     "round": "Pytanie",
     "correct": "Dobrze!",
     "wrong": "To nie to",
@@ -163,7 +158,6 @@
     "oracleEmpty": "Wyrocznia rozmyśla nad pytaniem…",
     "revealDigit": "Soczewka Cyfr",
     "extraGuess": "Zapasowy Klucz",
-    "timeFreeze": "Odłamek Czasu",
     "abandon": "Poddajesz się?",
     "abandonQ": "Porzucić ten poziom?",
     "levelUp": "AWANS",
@@ -193,8 +187,6 @@
     "levelSelect": "Wybór poziomu",
     "retry": "Spróbuj ponownie",
     "theAnswer": "Odpowiedź to",
-    "spareKeyUsed": "Zapasowy Klucz · +45s",
-    "spareKeyHint": "Sam uaktywnia się przy zerze · +45s",
     "hints": "Podpowiedzi"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Soczewka Cyfr",
       "d": "Ujawnia jeden znak odpowiedzi i jego pozycję"
-    },
-    "extra-guess": {
-      "n": "Zapasowy Klucz",
-      "d": "Sam uaktywnia się przy zerze — dodaje 45 sekund"
-    },
-    "time-freeze": {
-      "n": "Odłamek Chronosu",
-      "d": "Dodaje 60 sekund do timera podejścia"
     },
     "oracle": {
       "n": "Wyrocznia",
@@ -400,14 +384,12 @@
     "first_win": "Pierwsze Złamanie",
     "streak_3": "Hat-Trick",
     "streak_5": "Niepowstrzymany",
-    "speed_60": "Błyskawica",
     "ghost": "Protokół Ducha",
     "first_buy": "Terapia Zakupowa",
     "level_5": "Wschodząca Gwiazda",
     "rich_500": "Baron Iskier",
     "win_10": "Dziesięć Złamań",
     "win_50": "Pięćdziesiąt Złamań",
-    "speed_30": "Grom",
     "one_shot": "W Dziesiątkę",
     "level_10": "Najwyższy Umysł",
     "rich_1000": "Magnat Iskier",
@@ -435,8 +417,6 @@
     "level_5": "Wschodząca Gwiazda",
     "win_10": "Dziesięć Złamań",
     "win_50": "Pięćdziesiąt Złamań",
-    "speed_60": "Błyskawica",
-    "speed_30": "Grom",
     "ghost": "Protokół Ducha",
     "one_shot": "W Dziesiątkę",
     "level_10": "Najwyższy Umysł",
@@ -522,7 +502,6 @@
     "wins": "Wygrane",
     "sparks": "Iskry",
     "level": "Poziom",
-    "bestTime": "Najlepszy Czas",
     "streak": "Seria",
     "rank": "Ranga",
     "novas": "Novy"

@@ -124,14 +124,10 @@
     "easy": "Fácil",
     "medium": "Media",
     "hard": "Difícil",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — doble de Chispas esta partida (consume 1)",
     "stats": "Tu historial",
     "games": "Partidas",
     "cracked": "Descifrados",
-    "bestTime": "Mejor tiempo",
     "board": "Clasificación",
     "noBoost": "No tienes Nova Boost. Consigue uno en la tienda",
     "campaign": "Campaña · 30 niveles",
@@ -141,7 +137,6 @@
     "unlocked": "¡Nivel {n} desbloqueado!"
   },
   "game": {
-    "timer": "Tiempo",
     "round": "Pregunta",
     "correct": "¡Correcto!",
     "wrong": "Esa no es",
@@ -163,7 +158,6 @@
     "oracleEmpty": "El Oráculo medita la pregunta…",
     "revealDigit": "Lente de Dígitos",
     "extraGuess": "Llave Extra",
-    "timeFreeze": "Fragmento Crono",
     "abandon": "¿Rendirte?",
     "abandonQ": "¿Dejar este nivel atrás?",
     "levelUp": "SUBISTE DE NIVEL",
@@ -193,8 +187,6 @@
     "levelSelect": "Selección de nivel",
     "retry": "Reintentar",
     "theAnswer": "La respuesta era",
-    "spareKeyUsed": "Llave de Reserva · +45s",
-    "spareKeyHint": "Se usa solo al llegar a cero · +45s",
     "hints": "Pistas"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Lente de Dígito",
       "d": "Revela un carácter de la respuesta y su posición"
-    },
-    "extra-guess": {
-      "n": "Llave de Repuesto",
-      "d": "Se usa solo al llegar a cero — añade 45 segundos"
-    },
-    "time-freeze": {
-      "n": "Fragmento Crono",
-      "d": "Añade 60 segundos al cronómetro de la partida"
     },
     "oracle": {
       "n": "El Oráculo",
@@ -400,14 +384,12 @@
     "first_win": "Primera Grieta",
     "streak_3": "Triplete",
     "streak_5": "Imparable",
-    "speed_60": "Relámpago",
     "ghost": "Protocolo Fantasma",
     "first_buy": "Terapia de Compras",
     "level_5": "Estrella Ascendente",
     "rich_500": "Barón de Chispas",
     "win_10": "Diez Grietas",
     "win_50": "Cincuenta Grietas",
-    "speed_30": "Rayo",
     "one_shot": "Diana",
     "level_10": "Mente Suprema",
     "rich_1000": "Magnate de Chispas",
@@ -435,8 +417,6 @@
     "level_5": "Estrella Ascendente",
     "win_10": "Diez Grietas",
     "win_50": "Cincuenta Grietas",
-    "speed_60": "Relámpago",
-    "speed_30": "Rayo",
     "ghost": "Protocolo Fantasma",
     "one_shot": "Diana",
     "level_10": "Mente Suprema",
@@ -522,7 +502,6 @@
     "wins": "Victorias",
     "sparks": "Chispas",
     "level": "Nivel",
-    "bestTime": "Mejor Tiempo",
     "streak": "Racha",
     "rank": "Rango",
     "novas": "Novas"

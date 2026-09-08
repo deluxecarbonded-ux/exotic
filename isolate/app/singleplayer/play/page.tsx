@@ -11,14 +11,10 @@ import { QuestionCard } from "@/components/question";
 import { Confetti } from "@/components/confetti";
 import { fetchQuestion, fetchOracleHint, relocalizeQuestion } from "@/lib/ai";
 import { categoryForLevel, clueText, type AIQuestion, type Clue, type Difficulty } from "@/lib/game";
-import { fmtTime } from "@/lib/utils";
 import { sfx } from "@/lib/sound";
 import { gameError } from "@/lib/gameError";
 import {
-  Timer,
   Lightbulb,
-  KeyRound,
-  Snowflake,
   Sparkles,
   Trophy,
   Skull,
@@ -43,7 +39,7 @@ type GameMeta = {
 
 /* ── solo level = exactly ONE riddle / logic / math / trivia question.
      The answer is typed on the letters or numbers keyboard and verified
-     server-side; unlimited tries — only the countdown can fail you.
+     server-side; unlimited tries — take all the time you need.
      Completing the level clears it and unlocks the next one. ── */
 function PlayInner() {
   const { t, locale, num, aiQuestions } = useI18n();
@@ -53,7 +49,6 @@ function PlayInner() {
   const { user, loading: authLoading } = useSpSession();
 
   const [game, setGame] = useState<GameMeta | null>(null);
-  const [timeLeft, setTimeLeft] = useState(0);
   const [q, setQ] = useState<AIQuestion | null>(null);
   const [answerLen, setAnswerLen] = useState(4);
   const [qLoading, setQLoading] = useState(false);
@@ -72,8 +67,6 @@ function PlayInner() {
   const [levelModalPosted, setLevelModalPosted] = useState(false);
   const [profile, setProfile] = useState<any | null>(null);
 
-  const endAtRef = useRef<number>(0);
-  const tickRef = useRef<number>(-1);
   const overRef = useRef(false);
   const qTriesRef = useRef(0);
 
@@ -117,6 +110,7 @@ function PlayInner() {
           (data as any)?.answer_len ||
             (question.kind === "number" ? question.answer.length : 16)
         );
+        sfx.question();
         setQ({ ...question, answer: "" }); /* scrub the answer */
         setHints([]);
       }
@@ -155,8 +149,6 @@ function PlayInner() {
       }
       const meta = data as GameMeta;
       setGame(meta);
-      setTimeLeft(meta.time_limit);
-      endAtRef.current = Date.now() + meta.time_limit * 1000;
       /* fetch the question once the game id is in state */
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -231,40 +223,6 @@ function PlayInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale, q?.question, q?.kind, outcome]);
 
-  /* countdown — the only way to fail a level (unless a Spare Key saves you) */
-  useEffect(() => {
-    if (!game || outcome !== "playing") return;
-    const id = setInterval(() => {
-      const left = Math.max(0, Math.round((endAtRef.current - Date.now()) / 1000));
-      setTimeLeft(left);
-      if (left !== tickRef.current) {
-        tickRef.current = left;
-        if (left > 0 && left <= 5 && outcome === "playing") sfx.tick();
-      }
-      if (left <= 0) {
-        clearInterval(id);
-        (async () => {
-          const { data } = await spDb().rpc("time_out", { p_game: game.id });
-          const r = (data || {}) as any;
-          if (r.continued) {
-            /* Spare Key auto-activated */
-            endAtRef.current = Date.now() + (r.bonus || 45) * 1000;
-            setTimeLeft(r.bonus || 45);
-            loadItems(user!.id);
-            toast(t("game.spareKeyUsed"), "info");
-            sfx.correct();
-            return;
-          }
-          overRef.current = true;
-          sfx.lose();
-          setResult(r);
-          setOutcome("lost");
-        })();
-      }
-    }, 300);
-    return () => clearInterval(id);
-  }, [game, outcome]);
-
   /* the level's one answer, verified server-side */
   const submitAnswer = async (value: string): Promise<boolean> => {
     if (!game) return false;
@@ -279,6 +237,7 @@ function PlayInner() {
     }
     const r = data as any;
     if (!r?.win) return false;
+    if (r.level_up) setTimeout(() => sfx.levelup(), 900); /* stacks after the win sting */
     setResult(r);
     return true;
   };
@@ -305,14 +264,9 @@ function PlayInner() {
     setItems((m) => ({ ...m, [itemId]: Math.max(0, (m[itemId] || 0) - 1) }));
     if (itemId === "reveal") sfx.reveal();
     else if (itemId === "reveal2") sfx.deepReveal();
-    else if (itemId === "time-freeze") sfx.freeze();
     else if (itemId === "skip") sfx.skip();
     else if (itemId === "oracle") sfx.oracle();
-    if (itemId === "time-freeze") {
-      endAtRef.current += 60_000;
-      setTimeLeft((s) => s + 60);
-      sfx.correct();
-    } else if (itemId === "reveal" && r?.clue) {
+    if (itemId === "reveal" && r?.clue) {
       setHints((h) => [...h, r.clue]);
       toast(localeDigits(clueText(r.clue, t), locale), "info");
       sfx.correct();
@@ -339,6 +293,7 @@ function PlayInner() {
   const abandon = async () => {
     if (!game) return;
     overRef.current = true;
+    sfx.leave();
     await spDb().rpc("abandon_game", { p_game: game.id });
     router.replace("/singleplayer");
     toast(t("game.abandoned"), "info");
@@ -347,7 +302,6 @@ function PlayInner() {
   const itemDefs = [
     { id: "reveal", icon: Eye, label: t("game.revealDigit") },
     { id: "reveal2", icon: Crosshair, label: t("game.deepReveal") },
-    { id: "time-freeze", icon: Snowflake, label: t("game.timeFreeze") },
     { id: "skip", icon: SkipForward, label: t("game.skipQ") },
     { id: "oracle", icon: Sparkles, label: t("game.oracle") },
   ];
@@ -360,9 +314,6 @@ function PlayInner() {
       <main className="mx-auto max-w-3xl px-4 py-6 md:px-6">
         {/* HUD */}
         <div className="mb-6 flex flex-wrap items-center gap-2 animate-fade-up">
-          <Pill solid className="px-4 py-2 text-sm tabular">
-            <Timer size={14} /> {fmtTime(timeLeft, num)}
-          </Pill>
           <Pill className="px-4 py-2 text-sm">
             <Layers size={14} /> {t("sp.levelN", { n: Number(params.get("lvl")) || 1 })}
           </Pill>
@@ -391,18 +342,6 @@ function PlayInner() {
               </button>
             );
           })}
-          <span
-            className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold ${
-              (items["extra-guess"] || 0) > 0 ? "bg-soft text-fg" : "bg-soft text-mute opacity-40"
-            }`}
-            title={t("game.spareKeyHint")}
-          >
-            <KeyRound size={14} />
-            {t("game.extraGuess")}
-            <span className="rounded-full bg-soft2 px-2 py-0.5 tabular">
-              {num(items["extra-guess"] || 0)}
-            </span>
-          </span>
         </div>
 
         {/* revealed characters */}

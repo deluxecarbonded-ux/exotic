@@ -124,14 +124,10 @@
     "easy": "Lätt",
     "medium": "Medel",
     "hard": "Svår",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — dubbla Gnistror den här rundan (förbrukar 1)",
     "stats": "Ditt facit",
     "games": "Spel",
     "cracked": "Knäckta",
-    "bestTime": "Bästa tid",
     "board": "Topplista",
     "noBoost": "Du har ingen Nova Boost. Ta en i butiken",
     "campaign": "Kampanj · 30 nivåer",
@@ -141,7 +137,6 @@
     "unlocked": "Nivå {n} upplåst!"
   },
   "game": {
-    "timer": "Tid",
     "round": "Fråga",
     "correct": "Rätt!",
     "wrong": "Inte den",
@@ -163,7 +158,6 @@
     "oracleEmpty": "Oraklet begrunder frågan…",
     "revealDigit": "Sifferlins",
     "extraGuess": "Reservnyckel",
-    "timeFreeze": "Kronoskärva",
     "abandon": "Ge upp?",
     "abandonQ": "Överge den här nivån?",
     "levelUp": "NIVÅ UPP",
@@ -193,8 +187,6 @@
     "levelSelect": "Nivåval",
     "retry": "Försök igen",
     "theAnswer": "Svaret var",
-    "spareKeyUsed": "Reservnyckel · +45s",
-    "spareKeyHint": "Aktiveras automatiskt vid noll · +45s",
     "hints": "Tips"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Sifferlins",
       "d": "Avslöjar ett tecken i svaret och dess position"
-    },
-    "extra-guess": {
-      "n": "Reservnyckel",
-      "d": "Aktiveras automatiskt vid noll — 45 extra sekunder"
-    },
-    "time-freeze": {
-      "n": "Kronoskärva",
-      "d": "Lägger till 60 sekunder på rundans timer"
     },
     "oracle": {
       "n": "Oraklet",
@@ -400,14 +384,12 @@
     "first_win": "Första Krossen",
     "streak_3": "Hatttrick",
     "streak_5": "Ohejdbar",
-    "speed_60": "Blixt",
     "ghost": "Spökprotokoll",
     "first_buy": "Retailterapi",
     "level_5": "Stigande Stjärna",
     "rich_500": "Gnistbaron",
     "win_10": "Tio Krossar",
     "win_50": "Femtio Krossar",
-    "speed_30": "Dunderslag",
     "one_shot": "Tavlan i Mitt",
     "level_10": "Supersinnt",
     "rich_1000": "Gnistmagnat",
@@ -435,8 +417,6 @@
     "level_5": "Stigande Stjärna",
     "win_10": "Tio Krossar",
     "win_50": "Femtio Krossar",
-    "speed_60": "Blixt",
-    "speed_30": "Dunderslag",
     "ghost": "Spökprotokoll",
     "one_shot": "Tavlan i Mitt",
     "level_10": "Supersinnt",
@@ -522,7 +502,6 @@
     "wins": "Vinster",
     "sparks": "Gnistor",
     "level": "Nivå",
-    "bestTime": "Bästa Tid",
     "streak": "Svit",
     "rank": "Rang",
     "novas": "Novas"

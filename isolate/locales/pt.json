@@ -124,14 +124,10 @@
     "easy": "Fácil",
     "medium": "Médio",
     "hard": "Difícil",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — dobra as Faíscas nesta partida (consome 1)",
     "stats": "Seu histórico",
     "games": "Partidas",
     "cracked": "Quebrados",
-    "bestTime": "Melhor tempo",
     "board": "Ranking",
     "noBoost": "Você não tem Nova Boost. Pegue um na loja",
     "campaign": "Campanha · 30 níveis",
@@ -141,7 +137,6 @@
     "unlocked": "Nível {n} desbloqueado!"
   },
   "game": {
-    "timer": "Tempo",
     "round": "Pergunta",
     "correct": "Correto!",
     "wrong": "Não é essa",
@@ -163,7 +158,6 @@
     "oracleEmpty": "O Oráculo reflete sobre a pergunta…",
     "revealDigit": "Lente de Dígito",
     "extraGuess": "Chave Reserva",
-    "timeFreeze": "Fragmento Crono",
     "abandon": "Desistir?",
     "abandonQ": "Abandonar este nível?",
     "levelUp": "SUBIU DE NÍVEL",
@@ -193,8 +187,6 @@
     "levelSelect": "Seleção de nível",
     "retry": "Tentar de novo",
     "theAnswer": "A resposta era",
-    "spareKeyUsed": "Chave Reserva · +45s",
-    "spareKeyHint": "Ativa-se sozinho quando o tempo zera · +45s",
     "hints": "Dicas"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Lente de Dígito",
       "d": "Revela um caractere da resposta e sua posição"
-    },
-    "extra-guess": {
-      "n": "Chave Reserva",
-      "d": "Ativa-se sozinha quando o tempo zera — adiciona 45 segundos"
-    },
-    "time-freeze": {
-      "n": "Fragmento Crono",
-      "d": "Adiciona 60 segundos ao cronômetro da partida"
     },
     "oracle": {
       "n": "O Oráculo",
@@ -400,14 +384,12 @@
     "first_win": "Primeira Brecha",
     "streak_3": "Hat Trick",
     "streak_5": "Imparável",
-    "speed_60": "Relâmpago",
     "ghost": "Protocolo Fantasma",
     "first_buy": "Terapia de Compras",
     "level_5": "Estrela em Ascensão",
     "rich_500": "Barão de Fagulhas",
     "win_10": "Dez Brechas",
     "win_50": "Cinquenta Brechas",
-    "speed_30": "Trovão",
     "one_shot": "Na Mosca",
     "level_10": "Mente Suprema",
     "rich_1000": "Magnata de Fagulhas",
@@ -435,8 +417,6 @@
     "level_5": "Estrela em Ascensão",
     "win_10": "Dez Brechas",
     "win_50": "Cinquenta Brechas",
-    "speed_60": "Relâmpago",
-    "speed_30": "Trovão",
     "ghost": "Protocolo Fantasma",
     "one_shot": "Na Mosca",
     "level_10": "Mente Suprema",
@@ -522,7 +502,6 @@
     "wins": "Vitórias",
     "sparks": "Fagulhas",
     "level": "Nível",
-    "bestTime": "Melhor Tempo",
     "streak": "Sequência",
     "rank": "Rank",
     "novas": "Novas"

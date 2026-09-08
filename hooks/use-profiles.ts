@@ -13,7 +13,6 @@ export type SpProfile = {
   streak: number;
   games: number;
   wins: number;
-  best_time: number | null;
   last_daily: string | null;
   created_at: string;
   levels?: Record<string, number>;

@@ -116,6 +116,7 @@ export function Navbar({
                      guard would otherwise race us to /auth/sp */
                   router.push("/");
                   await sp().auth.signOut();
+                  sfx.leave();
                   toast(t("common.signedOut"), "info");
                 }}
               >
@@ -129,6 +130,7 @@ export function Navbar({
                   /* same race guard as the sp sign-out */
                   router.push("/");
                   await mp().auth.signOut();
+                  sfx.leave();
                   toast(t("common.signedOut"), "info");
                 }}
               >

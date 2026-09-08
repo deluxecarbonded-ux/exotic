@@ -14,14 +14,12 @@ import {
   Play,
   Zap,
   Flame,
-  Timer,
   Trophy,
   Gift,
   CheckCircle2,
   Crown, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MAX_LEVEL } from "@/lib/game";
-import { fmtTime } from "@/lib/utils";
 import { DIFFICULTIES, type Difficulty } from "@/lib/game";
 import { sfx } from "@/lib/sound";
 import { gameError } from "@/lib/gameError";
@@ -33,7 +31,7 @@ export default function SpHub() {
   const { user, loading: authLoading } = useSpSession();
   const { profile, loading: profileLoading } = useSpProfile(user?.id);
   const [diff, setDiff] = useState<Difficulty>("easy");
-  const [boardKind, setBoardKind] = useState<"wins" | "sparks" | "level" | "time" | "streak">("wins");
+  const [boardKind, setBoardKind] = useState<"wins" | "sparks" | "level" | "streak">("wins");
   const [level, setLevel] = useState(1);
   const [lvlPerDiff, setLvlPerDiff] = useState<Record<string, number>>({});
   const [board, setBoard] = useState<any[]>([]);
@@ -170,9 +168,6 @@ export default function SpHub() {
                     )}
                   >
                     <div className="display text-base">{t(`sp.${d}`)}</div>
-                    <div className="mt-0.5 text-[11px] font-bold opacity-60">
-                      {t(`sp.${d}Sub`)}
-                    </div>
                   </button>
                 ))}
               </div>
@@ -264,11 +259,6 @@ export default function SpHub() {
                     value={num(profile.streak)}
                     icon={<Flame size={13} />}
                   />
-                  <Stat
-                    label={t("sp.bestTime")}
-                    value={profile.best_time ? fmtTime(profile.best_time, num) : "—"}
-                    icon={<Timer size={13} />}
-                  />
                 </div>
               </Card>
             )}
@@ -313,7 +303,6 @@ export default function SpHub() {
                     ["wins", "lb.wins"],
                     ["sparks", "lb.sparks"],
                     ["level", "lb.level"],
-                    ["time", "lb.bestTime"],
                     ["streak", "lb.streak"],
                   ] as const
                 ).map(([k, key]) => (
@@ -352,7 +341,7 @@ export default function SpHub() {
                         {row.username}
                       </span>
                       <span className="text-xs font-black tabular">
-                        {boardKind === "time" ? fmtTime(row.value, num) : num(row.value)}
+                        {num(row.value)}
                       </span>
                     </div>
                   ))}

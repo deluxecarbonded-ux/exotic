@@ -124,14 +124,10 @@
     "easy": "Makkelijk",
     "medium": "Gemiddeld",
     "hard": "Moeilijk",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — dubbele Vonken deze run (verbruikt 1)",
     "stats": "Jouw staat van dienst",
     "games": "Games",
     "cracked": "Gekraakt",
-    "bestTime": "Beste tijd",
     "board": "Ranglijst",
     "noBoost": "Je hebt geen Nova Boost. Haal er een in de winkel",
     "campaign": "Campagne · 30 levels",
@@ -141,7 +137,6 @@
     "unlocked": "Level {n} ontgrendeld!"
   },
   "game": {
-    "timer": "Tijd",
     "round": "Vraag",
     "correct": "Juist!",
     "wrong": "Dat is hem niet",
@@ -163,7 +158,6 @@
     "oracleEmpty": "Het Orakel overweegt de vraag…",
     "revealDigit": "Cijferlens",
     "extraGuess": "Reservesleutel",
-    "timeFreeze": "Chronoscherf",
     "abandon": "Opgeven?",
     "abandonQ": "Dit level opgeven?",
     "levelUp": "LEVEL OMHOOG",
@@ -193,8 +187,6 @@
     "levelSelect": "Levelkeuze",
     "retry": "Opnieuw",
     "theAnswer": "Het antwoord was",
-    "spareKeyUsed": "Reservesleutel · +45s",
-    "spareKeyHint": "Gebruikt zichzelf bij nul · +45s",
     "hints": "Hints"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Cijferlens",
       "d": "Onthult één teken van het antwoord en zijn positie"
-    },
-    "extra-guess": {
-      "n": "Reservesleutel",
-      "d": "Gebruikt zichzelf bij nul — 45 seconden extra"
-    },
-    "time-freeze": {
-      "n": "Chronoscherf",
-      "d": "Voegt 60 seconden toe aan de timer van de run"
     },
     "oracle": {
       "n": "Het Orakel",
@@ -400,14 +384,12 @@
     "first_win": "Eerste Kraak",
     "streak_3": "Hattrick",
     "streak_5": "Onstuitbaar",
-    "speed_60": "Bliksem",
     "ghost": "Spookprotocol",
     "first_buy": "Winkeltherapie",
     "level_5": "Rijzende Ster",
     "rich_500": "Vonkenbaron",
     "win_10": "Tien Kraaks",
     "win_50": "Vijftig Kraaks",
-    "speed_30": "Donderslag",
     "one_shot": "Voltreffer",
     "level_10": "Supergeest",
     "rich_1000": "Vonkenmagnaat",
@@ -435,8 +417,6 @@
     "level_5": "Rijzende Ster",
     "win_10": "Tien Kraaks",
     "win_50": "Vijftig Kraaks",
-    "speed_60": "Bliksem",
-    "speed_30": "Donderslag",
     "ghost": "Spookprotocol",
     "one_shot": "Voltreffer",
     "level_10": "Supergeest",
@@ -522,7 +502,6 @@
     "wins": "Overwinningen",
     "sparks": "Vonken",
     "level": "Niveau",
-    "bestTime": "Beste Tijd",
     "streak": "Reeks",
     "rank": "Rang",
     "novas": "Novas"

@@ -2,7 +2,7 @@
   "name": "exotic",
   "version": "1.0.0",
   "private": true,
-  "description": "Exotic \u2014 crack the four-digit code. Single player + realtime multiplayer brain-teaser game.",
+  "description": "Exotic — crack the four-digit code. Single player + realtime multiplayer brain-teaser game.",
   "scripts": {
     "dev": "next dev -p 3000 -H 0.0.0.0",
     "build": "next build",
@@ -26,6 +26,7 @@
     "@types/react-dom": "^19.2.7",
     "playwright": "^1.63.0",
     "postcss": "^8.5.27",
+    "supabase": "^2.117.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   }

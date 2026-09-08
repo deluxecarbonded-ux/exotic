@@ -124,14 +124,10 @@
     "easy": "Kolay",
     "medium": "Orta",
     "hard": "Zor",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "Nova Boost — bu koşuda iki kat Kıvılcım (1 harcar)",
     "stats": "Senin kayıtların",
     "games": "Oyun",
     "cracked": "Kırılan",
-    "bestTime": "En iyi süre",
     "board": "Liderlik tablosu",
     "noBoost": "Nova Boost'un yok. Mağazadan bir tane kap",
     "campaign": "Kampanya · 30 seviye",
@@ -141,7 +137,6 @@
     "unlocked": "Seviye {n} açıldı!"
   },
   "game": {
-    "timer": "Süre",
     "round": "Soru",
     "correct": "Doğru!",
     "wrong": "O değil",
@@ -163,7 +158,6 @@
     "oracleEmpty": "Kâhin soruyu düşünüyor…",
     "revealDigit": "Hane Merceği",
     "extraGuess": "Yedek Anahtar",
-    "timeFreeze": "Krono Parçası",
     "abandon": "Pes mi?",
     "abandonQ": "Bu seviyeyi bırakmak istiyor musun?",
     "levelUp": "SEVİYE ATLADIN",
@@ -193,8 +187,6 @@
     "levelSelect": "Seviye seçimi",
     "retry": "Tekrar dene",
     "theAnswer": "Cevap şuydu",
-    "spareKeyUsed": "Yedek Anahtar · +45s",
-    "spareKeyHint": "Süre sıfırlanınca otomatik kullanılır · +45s",
     "hints": "İpuçları"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "Rakam Merceği",
       "d": "Cevabın bir karakterini ve konumunu gösterir"
-    },
-    "extra-guess": {
-      "n": "Yedek Anahtar",
-      "d": "Süre sıfırlanınca otomatik kullanılır — 45 saniye ekler"
-    },
-    "time-freeze": {
-      "n": "Zaman Kıymığı",
-      "d": "Tur süresine 60 saniye ekler"
     },
     "oracle": {
       "n": "Kâhin",
@@ -400,14 +384,12 @@
     "first_win": "İlk Kırılma",
     "streak_3": "Üçlü Seri",
     "streak_5": "Durdurulamaz",
-    "speed_60": "Şimşek",
     "ghost": "Hayalet Protokolü",
     "first_buy": "Alışveriş Terapisi",
     "level_5": "Yükselen Yıldız",
     "rich_500": "Kıvılcım Baronu",
     "win_10": "On Kırılma",
     "win_50": "Elli Kırılma",
-    "speed_30": "Yıldırım",
     "one_shot": "Tam İsabet",
     "level_10": "Yüce Zihin",
     "rich_1000": "Kıvılcım Kralı",
@@ -435,8 +417,6 @@
     "level_5": "Yükselen Yıldız",
     "win_10": "On Kırılma",
     "win_50": "Elli Kırılma",
-    "speed_60": "Şimşek",
-    "speed_30": "Yıldırım",
     "ghost": "Hayalet Protokolü",
     "one_shot": "Tam İsabet",
     "level_10": "Yüce Zihin",
@@ -522,7 +502,6 @@
     "wins": "Galibiyetler",
     "sparks": "Kıvılcımlar",
     "level": "Seviye",
-    "bestTime": "En İyi Süre",
     "streak": "Seri",
     "rank": "Rütbe",
     "novas": "Novas"

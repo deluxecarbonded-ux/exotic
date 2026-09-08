@@ -124,14 +124,10 @@
     "easy": "이지",
     "medium": "노멀",
     "hard": "하드",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "노바 부스트 — 이번 판 스파크 2배 (1개 소모)",
     "stats": "나의 기록",
     "games": "플레이",
     "cracked": "성공",
-    "bestTime": "최고 기록",
     "board": "리더보드",
     "noBoost": "노바 부스트가 없어요. 상점에서 구매하세요",
     "campaign": "캠페인 · 30레벨",
@@ -141,7 +137,6 @@
     "unlocked": "레벨 {n} 해금!"
   },
   "game": {
-    "timer": "시간",
     "round": "문제",
     "correct": "정답!",
     "wrong": "그게 아니야",
@@ -163,7 +158,6 @@
     "oracleEmpty": "오라클이 질문을 곱씹는 중…",
     "revealDigit": "숫자 렌즈",
     "extraGuess": "예비 열쇠",
-    "timeFreeze": "시간 조각",
     "abandon": "포기할까요?",
     "abandonQ": "이 레벨을 포기할까요?",
     "levelUp": "레벨 업",
@@ -193,8 +187,6 @@
     "levelSelect": "레벨 선택",
     "retry": "다시 시도",
     "theAnswer": "정답은",
-    "spareKeyUsed": "스페어 키 · +45초",
-    "spareKeyHint": "시간이 0이 되면 자동 사용 · +45초",
     "hints": "힌트"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "숫자 렌즈",
       "d": "정답의 글자 하나와 위치를 공개합니다"
-    },
-    "extra-guess": {
-      "n": "예비 열쇠",
-      "d": "시간이 0이 되면 자동 사용 — 45초 추가"
-    },
-    "time-freeze": {
-      "n": "시간 조각",
-      "d": "런 타이머에 60초를 추가합니다"
     },
     "oracle": {
       "n": "오라클",
@@ -400,14 +384,12 @@
     "first_win": "첫 해독",
     "streak_3": "해트트릭",
     "streak_5": "멈출 수 없음",
-    "speed_60": "번개",
     "ghost": "고스트 프로토콜",
     "first_buy": "쇼핑 치료",
     "level_5": "떠오르는 별",
     "rich_500": "스파크 남작",
     "win_10": "10회 해독",
     "win_50": "50회 해독",
-    "speed_30": "천둥",
     "one_shot": "정중앙",
     "level_10": "최고의 두뇌",
     "rich_1000": "스파크 대왕",
@@ -435,8 +417,6 @@
     "level_5": "떠오르는 별",
     "win_10": "10회 해독",
     "win_50": "50회 해독",
-    "speed_60": "번개",
-    "speed_30": "천둥",
     "ghost": "고스트 프로토콜",
     "one_shot": "정중앙",
     "level_10": "최고의 두뇌",
@@ -522,7 +502,6 @@
     "wins": "승리",
     "sparks": "스파크",
     "level": "레벨",
-    "bestTime": "최고 기록",
     "streak": "연승",
     "rank": "랭크",
     "novas": "노바"

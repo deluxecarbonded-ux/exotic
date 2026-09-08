@@ -124,14 +124,10 @@
     "easy": "简单",
     "medium": "中等",
     "hard": "困难",
-    "easySub": "4:00",
-    "mediumSub": "3:00",
-    "hardSub": "2:30",
     "double": "新星加速——本局火花翻倍（消耗 1 个）",
     "stats": "你的战绩",
     "games": "场次",
     "cracked": "破解数",
-    "bestTime": "最佳用时",
     "board": "排行榜",
     "noBoost": "你还没有新星加速，去商店买一个吧",
     "campaign": "战役 · 30关",
@@ -141,7 +137,6 @@
     "unlocked": "第 {n} 关已解锁！"
   },
   "game": {
-    "timer": "时间",
     "round": "题目",
     "correct": "答对了！",
     "wrong": "不是这个",
@@ -163,7 +158,6 @@
     "oracleEmpty": "神谕正在思考问题…",
     "revealDigit": "数字透镜",
     "extraGuess": "备用钥匙",
-    "timeFreeze": "时之碎片",
     "abandon": "要放弃吗？",
     "abandonQ": "放弃这一关？",
     "levelUp": "升级了",
@@ -193,8 +187,6 @@
     "levelSelect": "选择关卡",
     "retry": "重试",
     "theAnswer": "答案是",
-    "spareKeyUsed": "备用钥匙 · +45秒",
-    "spareKeyHint": "倒计时归零时自动使用 · +45秒",
     "hints": "提示"
   },
   "mp": {
@@ -288,14 +280,6 @@
     "reveal": {
       "n": "数字透镜",
       "d": "揭示答案的一个字符及其位置"
-    },
-    "extra-guess": {
-      "n": "备用钥匙",
-      "d": "倒计时归零时自动使用 — 增加45秒"
-    },
-    "time-freeze": {
-      "n": "时空碎片",
-      "d": "为本局倒计时增加60秒"
     },
     "oracle": {
       "n": "先知",
@@ -400,14 +384,12 @@
     "first_win": "首次破解",
     "streak_3": "帽子戏法",
     "streak_5": "势不可挡",
-    "speed_60": "闪电",
     "ghost": "幽灵协议",
     "first_buy": "购物疗法",
     "level_5": "新星",
     "rich_500": "火花男爵",
     "win_10": "十次破解",
     "win_50": "五十次破解",
-    "speed_30": "雷霆",
     "one_shot": "正中靶心",
     "level_10": "至高头脑",
     "rich_1000": "火花大亨",
@@ -435,8 +417,6 @@
     "level_5": "新星",
     "win_10": "十次破解",
     "win_50": "五十次破解",
-    "speed_60": "闪电",
-    "speed_30": "雷霆",
     "ghost": "幽灵协议",
     "one_shot": "正中靶心",
     "level_10": "至高头脑",
@@ -522,7 +502,6 @@
     "wins": "胜场",
     "sparks": "火花",
     "level": "等级",
-    "bestTime": "最佳时间",
     "streak": "连胜",
     "rank": "段位",
     "novas": "诺瓦"
